@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <hs-button></hs-button>
+  <hs-button type="primary" size="small">自定义按钮</hs-button>
 </template>
 
 <style scoped>

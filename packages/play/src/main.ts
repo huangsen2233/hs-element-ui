@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
-import './style.css'
+// import './style.css'
 import App from './App.vue'
 
-import HsElement from 'hs-element-ui'
+import HsElementUiInstaller from 'hs-element-ui'
 
-createApp(App).use(HsElement).mount('#app')
+createApp(App).use(HsElementUiInstaller).mount('#app')
