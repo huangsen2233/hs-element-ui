@@ -11,14 +11,14 @@ export interface ButtonProps {
     nativeType?: NativeType;
     disabled?: boolean;
     loading?: boolean;
-    icon?: string;
     circle?: boolean;
     plain?: boolean;
     round?: boolean;
-    loadingIcon?: string;
     autofocus?: boolean;
     useThrottle?: boolean;
     throttleDuration?: number;
+    icon?: string;
+    loadingIcon?: string;
 }
 
 export interface ButtonEmits {

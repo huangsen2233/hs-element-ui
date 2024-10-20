@@ -8,16 +8,19 @@ defineOptions({ name: 'HsButton' })
 
 const props = withDefaults(defineProps<ButtonProps>(), {
     tag: 'button',
-    nativeType: 'button',
     type: 'primary',
     size: 'default',
+    nativeType: 'button',
+    disabled: false,
+    loading: false,
     plain: false,
     round: false,
     circle: false,
-    loading: false,
-    disabled: false,
+    autofocus: false,
     useThrottle: true,
     throttleDuration: 500,
+    icon: '',
+    // loadingIcon: 'spinner',
 })
 
 const emits = defineEmits<ButtonEmits>()
@@ -60,11 +63,11 @@ const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
             'is-disabled': disabled
         }"
         @click="(e: MouseEvent) => useThrottle ? handleBtnClickThrottle(e) : handleBtnClick(e)"
-    >   
+    >
         <!-- loading 图标 -->
         <template v-if="loading">
             <slot name="loading">
-                <hs-icon 
+                <hs-icon
                     class="loading-icon"
                     :icon="loadingIcon ?? 'spinner'"
                     :style="iconStyle"
@@ -73,7 +76,7 @@ const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
             </slot>
         </template>
         <!-- 传入的图标 -->
-        <hs-icon 
+        <hs-icon
             v-if="icon && !loading"
             :icon="icon"
             :style="iconStyle"

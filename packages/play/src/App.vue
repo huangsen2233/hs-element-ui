@@ -3,7 +3,12 @@
 </script>
 
 <template>
-  <hs-button type="primary" size="small">自定义按钮</hs-button>
+  <hs-button
+    type="primary"
+    size="small"
+    :loading="true"
+    icon=""search
+  >自定义按钮</hs-button>
 </template>
 
 <style scoped>
