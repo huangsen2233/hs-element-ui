@@ -1,13 +1,9 @@
-import type { Meta, StoryObj, ArgTypes } from "@storybook/vue3";
-import { fn, within, userEvent, expect, clearAllMocks } from "@storybook/test";
-import { set } from "lodash-es";
+import type { Meta, StoryObj, ArgTypes } from "@storybook/vue3"
+import { fn, within, userEvent, expect, clearAllMocks } from "@storybook/test"
+import { set } from "lodash-es"
 
-import { HsButton } from "hs-element-ui";
-
-// import 'toy-element/dist/theme/Button.css';
-// import '@hs-element-ui/components'
+import { HsButton } from "hs-element-ui"
 import '@hs-element-ui/theme/index.css'
-
 
 type Story = StoryObj<typeof HsButton> & { argTypes?: ArgTypes };
 
@@ -79,7 +75,7 @@ export const Default: Story & { args: { content: string } } = {
       return { args };
     },
     template: container(
-      `<er-button data-testid="story-test-btn" v-bind="args">{{args.content}}</er-button>`
+      `<hs-button data-testid="story-test-btn" v-bind="args">{{args.content}}</hs-button>`
     ),
   }),
 
@@ -153,7 +149,7 @@ export const Autofocus: Story & { args: { content: string } } = {
     template: container(
       `
       <p>请点击浏览器的刷新页面来获取按钮聚焦</p>
-      <er-button data-testid="story-test-btn" v-bind="args">{{args.content}}</er-button>
+      <hs-button data-testid="story-test-btn" v-bind="args">{{args.content}}</hs-button>
       `
     ),
   }),
@@ -175,7 +171,7 @@ export const Circle: Story = {
       return { args };
     },
     template: container(`
-      <er-button circle v-bind="args"/>
+      <hs-button circle v-bind="args"/>
     `),
   }),
   play: async ({ canvasElement, args, step }) => {
@@ -216,15 +212,15 @@ export const Group: Story & { args: { content1: string; content2: string } } = {
     content2: "Button2",
   },
   render: (args) => ({
-    components: { HsButton, HsButtonGroup },
+    components: { HsButton },
     setup() {
       return { args };
     },
     template: container(`
-       <er-button-group :type="args.groupType" :size="args.groupSize" :disabled="args.groupDisabled">
-         <er-button v-bind="args">{{args.content1}}</er-button>
-         <er-button v-bind="args">{{args.content2}}</er-button>
-       </er-button-group>
+       <hs-button-group :type="args.groupType" :size="args.groupSize" :disabled="args.groupDisabled">
+         <hs-button v-bind="args">{{args.content1}}</hs-button>
+         <hs-button v-bind="args">{{args.content2}}</hs-button>
+       </hs-button-group>
     `),
   }),
   play: async ({ canvasElement, args, step }) => {

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import type { ButtonProps, ButtonEmits, ButtonInstance } from './types'
+import { ref, computed, inject } from 'vue'
 import { throttle } from 'lodash-es'
 import HsIcon from '../Icon/Icon.vue'
+import { BUTTON_GROUP_CTX_KEY } from './constants'
+import type { ButtonProps, ButtonEmits, ButtonInstance } from './types'
 
 defineOptions({ name: 'HsButton' })
 
@@ -20,8 +21,14 @@ const props = withDefaults(defineProps<ButtonProps>(), {
     useThrottle: true,
     throttleDuration: 500,
     icon: '',
-    // loadingIcon: 'spinner',
+    loadingIcon: 'spinner',
 })
+
+const ctx = inject(BUTTON_GROUP_CTX_KEY, void 0)
+
+const type = computed(() => (ctx?.type ?? props.type ?? ''))
+const size = computed(() => (ctx?.size ?? props.size ?? ''))
+const disabled = computed(() => (ctx?.disabled ?? props.disabled ?? false))
 
 const emits = defineEmits<ButtonEmits>()
 
@@ -41,7 +48,7 @@ const handleBtnClick = (e: MouseEvent) => {
     emits('click', e)
 }
 
-const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
+const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration, { trailing: false })
 
 </script>
 
@@ -71,10 +78,12 @@ const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
                     class="loading-icon"
                     :icon="loadingIcon ?? 'spinner'"
                     :style="iconStyle"
+                    spin
                     size="1x"
                 ></hs-icon>
             </slot>
         </template>
+
         <!-- 传入的图标 -->
         <hs-icon
             v-if="icon && !loading"
@@ -82,6 +91,7 @@ const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
             :style="iconStyle"
             size="1x"
         ></hs-icon>
+
         <slot></slot>
     </component>
 </template>

@@ -4,7 +4,6 @@
     /* colors */
     --er-color-white: #ffffff;
     --er-color-black: #000000;
-    --colors: (primary: #409eff, success: #67c23a, warning: #e6a23c, danger: #f56c6c, info: #909399);
     --er-bg-color: #ffffff;
     --er-bg-color-page: #f2f3f5;
     --er-bg-color-overlay: #ffffff;
@@ -26,6 +25,8 @@
     --er-fill-color-dark: #ebedf0;
     --er-fill-color-darker: #e6e8eb;
     --er-fill-color-blank: #ffffff;
+
+    --colors: (primary: #409eff, success: #67c23a, warning: #e6a23c, danger: #f56c6c, info: #909399);
     
     @each $val, $color in var(--colors) {
         --er-color-$(val): $(color);

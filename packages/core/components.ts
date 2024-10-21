@@ -1,8 +1,12 @@
-import { HsButton, HsIcon } from '@hs-element-ui/components'
+import { 
+    HsButton, 
+    HsButtonGroup, 
+    HsIcon 
+} from '@hs-element-ui/components'
 import type { Plugin } from 'vue'
 
 export default [
     HsButton,
-    // HsButtonGroup
+    HsButtonGroup,
     HsIcon,
 ] as Plugin[]

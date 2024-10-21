@@ -1,6 +1,3 @@
-.er-button-group {
-    --er-button-group-border-color: var(--er-border-color-lighter);
-}
 .er-button {
     --er-button-font-weight: var(--er-font-weight-primary);
     --er-button-border-color: var(--er-border-color);
@@ -17,6 +14,37 @@
     --er-button-active-bg-color: var(--er-button-hover-bg-color);
     --er-button-outline-color: var(--er-color-primary-light-5);
     --er-button-active-color: var(--er-text-color-primary);
+}
+
+@each $val in primary, success, warning, info, danger {
+    .er-button--$(val) {
+        --er-button-text-color: var(--er-color-white);
+        --er-button-bg-color: var(--er-color-$(val));
+        --er-button-border-color: var(--er-color-$(val));
+        --er-button-outline-color: var(--er-color-$(val)-light-5);
+        --er-button-active-color: var(--er-color-$(val)-dark-2);
+        --er-button-hover-text-color: var(--er-color-white);
+        --er-button-hover-bg-color: var(--er-color-$(val)-light-3);
+        --er-button-hover-border-color: var(--er-color-$(val)-light-3);
+        --er-button-active-bg-color: var(--er-color-$(val)-dark-2);
+        --er-button-active-border-color: var(--er-color-$(val)-dark-2);
+        --er-button-disabled-text-color: var(--er-color-white);
+        --er-button-disabled-bg-color: var(--er-color-$(val)-light-5);
+        --er-button-disabled-border-color: var(--er-color-$(val)-light-5);
+    }
+    .er-button--$(val).is-plain {
+        --er-button-text-color: var(--er-color-$(val));
+        --er-button-bg-color: var(--er-color-$(val)-light-9);
+        --er-button-border-color: var(--er-color-$(val)-light-5);
+        --er-button-hover-text-color: var(--er-color-white);
+        --er-button-hover-bg-color: var(--er-color-$(val));
+        --er-button-hover-border-color: var(--er-color-$(val));
+        --er-button-active-text-color: var(--er-color-white);
+
+        --er-button-disabled-text-color: var(--er-color-$(val)-light-5);
+        --er-button-disabled-bg-color: var(--er-color-$(val)-light-9);
+        --er-button-disabled-border-color: var(--er-color-$(val)-light-8);
+    }
 }
 
 .er-button {
@@ -99,36 +127,7 @@
         height: 1em;
     }
 }
-@each $val in primary, success, warning, info, danger {
-    .er-button--$(val) {
-        --er-button-text-color: var(--er-color-white);
-        --er-button-bg-color: var(--er-color-$(val));
-        --er-button-border-color: var(--er-color-$(val));
-        --er-button-outline-color: var(--er-color-$(val)-light-5);
-        --er-button-active-color: var(--er-color-$(val)-dark-2);
-        --er-button-hover-text-color: var(--er-color-white);
-        --er-button-hover-bg-color: var(--er-color-$(val)-light-3);
-        --er-button-hover-border-color: var(--er-color-$(val)-light-3);
-        --er-button-active-bg-color: var(--er-color-$(val)-dark-2);
-        --er-button-active-border-color: var(--er-color-$(val)-dark-2);
-        --er-button-disabled-text-color: var(--er-color-white);
-        --er-button-disabled-bg-color: var(--er-color-$(val)-light-5);
-        --er-button-disabled-border-color: var(--er-color-$(val)-light-5);
-    }
-    .er-button--$(val).is-plain {
-        --er-button-text-color: var(--er-color-$(val));
-        --er-button-bg-color: var(--er-color-$(val)-light-9);
-        --er-button-border-color: var(--er-color-$(val)-light-5);
-        --er-button-hover-text-color: var(--er-color-white);
-        --er-button-hover-bg-color: var(--er-color-$(val));
-        --er-button-hover-border-color: var(--er-color-$(val));
-        --er-button-active-text-color: var(--er-color-white);
 
-        --er-button-disabled-text-color: var(--er-color-$(val)-light-5);
-        --er-button-disabled-bg-color: var(--er-color-$(val)-light-9);
-        --er-button-disabled-border-color: var(--er-color-$(val)-light-8);
-    }
-}
 .er-button--large {
     --er-button-size: 40px;
     height: var(--er-button-size);
@@ -139,7 +138,7 @@
     /*circle*/
     &.is-circle {
         border-radius: 50%;
-    padding: 12px;
+        padding: 12px;
     }
 }
 .er-button--small {
@@ -159,6 +158,10 @@
         width: 12px;
         height: 12px;
     }
+}
+
+.er-button-group {
+    --er-button-group-border-color: var(--er-border-color-lighter);
 }
 
 .er-button-group {
