@@ -41,7 +41,10 @@ const iconStyle = computed(() => ({
 }))
 
 defineExpose<ButtonInstance>({
-    ref: _ref
+    ref: _ref,
+    disabled,
+    type,
+    size,
 })
 
 const handleBtnClick = (e: MouseEvent) => {

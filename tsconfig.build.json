@@ -22,7 +22,12 @@
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "types": ["node"],
+        "baseUrl": "./",
+        "paths": {
+            "@hs-element-ui/components": ["./packages/components"],
+        }
     },
     "include": [
         "packages/core/index.ts",

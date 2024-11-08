@@ -1,9 +1,60 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { compression } from 'vite-plugin-compression2'
+import { readFile } from 'fs'
 import { resolve } from 'path'
+import shell from 'shelljs'
+import { delay, defer } from 'lodash-es'
+import hooks from './hooksPlugin'
+import terser from '@rollup/plugin-terser'
+import { visualizer } from 'rollup-plugin-visualizer'
+
+const TRY_MOVE_STYLES_DELAY = 800 as const
+
+function moveStyles() {
+    // try {
+    //     readFileSync('./dist/umd/index.css.gz')
+    //     // 复制文件到 dist 目录
+    //     shell.cp('./dist/umd/index.css', './dist//index.css')
+    // } catch (_) { 
+    //     delay(moveStyle, TRY_MOVE_STYLES_DELAY)
+    // }
+
+    readFile("./dist/umd/index.css.gz", (err) => {
+        if (err) return delay(moveStyles, TRY_MOVE_STYLES_DELAY);
+        defer(() => shell.cp("./dist/umd/index.css", "./dist/index.css"));
+    });
+}
+
+const isProd = process.env.NODE_ENV === "production"
+const isDev = process.env.NODE_ENV === "development"
+const isTest = process.env.NODE_ENV === "test"
 
 export default defineConfig({
-    plugins: [vue()],
+    plugins: [
+        vue(), 
+        visualizer({ filename: './dist/stats.umd.html' }),
+        // 压缩为 gz 格式
+        compression({ 
+            include: /.(cjs|css)$/i,
+        }),
+        hooks({
+            rmFiles: ['./dist/umd', './dist/index.css'],
+            afterBuild: moveStyles
+        }),
+        terser({
+            compress: {
+                drop_console: ["log"], // 生产环境移除 console
+                drop_debugger: true, // 移除 debugger
+                passes: 3, // 压缩次数
+                global_defs: {
+                    "@DEV": JSON.stringify(isDev),
+                    "@PROD": JSON.stringify(isProd),
+                    "@TEST": JSON.stringify(isTest),
+                },
+            }
+        }),
+    ],
     build: {
         outDir: 'dist/umd', 
         lib: {

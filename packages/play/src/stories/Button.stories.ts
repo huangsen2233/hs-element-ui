@@ -2,8 +2,8 @@ import type { Meta, StoryObj, ArgTypes } from "@storybook/vue3"
 import { fn, within, userEvent, expect, clearAllMocks } from "@storybook/test"
 import { set } from "lodash-es"
 
-import { HsButton } from "hs-element-ui"
-import '@hs-element-ui/theme/index.css'
+import { HsButton, HsButtonGroup } from "hs-element-ui"
+import 'hs-element-ui/dist/theme/Button.css'
 
 type Story = StoryObj<typeof HsButton> & { argTypes?: ArgTypes };
 
@@ -217,10 +217,10 @@ export const Group: Story & { args: { content1: string; content2: string } } = {
       return { args };
     },
     template: container(`
-       <hs-button-group :type="args.groupType" :size="args.groupSize" :disabled="args.groupDisabled">
-         <hs-button v-bind="args">{{args.content1}}</hs-button>
-         <hs-button v-bind="args">{{args.content2}}</hs-button>
-       </hs-button-group>
+      <hs-button-group :type="args.groupType" :size="args.groupSize" :disabled="args.groupDisabled">
+        <hs-button v-bind="args">{{args.content1}}</hs-button>
+        <hs-button v-bind="args">{{args.content2}}</hs-button>
+      </hs-button-group>
     `),
   }),
   play: async ({ canvasElement, args, step }) => {
