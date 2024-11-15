@@ -8,7 +8,9 @@
     "story": "pnpm --filter @hs-element-ui/play storybook",
     "docs:dev": "pnpm run build && pnpm --filter @hs-element-ui/docs dev",
     "docs:build": "pnpm --filter @hs-element-ui/docs build",
-    "test": "cross-env NODE_ENV=test pnpm --filter @hs-element-ui/components test",
+    "test": "run-s test-utils test-comp",
+    "test-utils": "cross-env NODE_ENV=test pnpm --filter @hs-element-ui/utils test",
+    "test-comp": "cross-env NODE_ENV=test pnpm --filter @hs-element-ui/components test",
     "build": "cross-env NODE_ENV=production pnpm --filter hs-element-ui build",
     "build:dev": "cross-env NODE_ENV=development pnpm --filter hs-element-ui build:watch"
   },
@@ -45,6 +47,9 @@
     "@hs-element-ui/hooks": "workspace:*",
     "@hs-element-ui/theme": "workspace:*",
     "@hs-element-ui/utils": "workspace:*",
+    "@vitest/coverage-v8": "^1.4.0",
+    "@vue/test-utils": "^2.4.5",
+    "jsdom": "^24.0.0",
     "hs-element-ui": "workspace:*",
     "lodash-es": "^4.17.21",
     "vue": "^3.4.19"
