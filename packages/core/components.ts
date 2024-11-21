@@ -5,6 +5,7 @@ import {
     HsCollapse,
     HsCollapseItem,
     HsAlert,
+    HsTooltip,
 } from '@hs-element-ui/components'
 import type { Plugin } from 'vue'
 
@@ -14,5 +15,6 @@ export default [
     HsIcon,
     HsCollapse,
     HsCollapseItem,
-    HsAlert
+    HsAlert,
+    HsTooltip,
 ] as Plugin[]

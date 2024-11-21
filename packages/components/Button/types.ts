@@ -39,7 +39,7 @@ export interface ButtonGroupProps {
 }
 
 export interface ButtonGroupContext {
-size?: ButtonSize;
-type?: ButtonType;
-disabled?: boolean;
+    size?: ButtonSize;
+    type?: ButtonType;
+    disabled?: boolean;
 }

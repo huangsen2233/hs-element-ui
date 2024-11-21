@@ -31,7 +31,7 @@ const activeNames = ref(['1', '2'])
     </hs-collapse>
   </div>
 
-  <hs-alert type="success">警告组件</hs-alert>
+  <hs-alert type="success" center>警告组件</hs-alert>
 </template>
 
 <style scoped>

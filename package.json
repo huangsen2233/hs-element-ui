@@ -6,12 +6,15 @@
   "scripts": {
     "dev": "pnpm --filter @hs-element-ui/play dev",
     "story": "pnpm --filter @hs-element-ui/play storybook",
-    "docs:dev": "pnpm run build && pnpm --filter @hs-element-ui/docs dev",
+    "docs:dev": "pnpm --filter @hs-element-ui/docs dev",
     "docs:build": "pnpm --filter @hs-element-ui/docs build",
     "test": "run-s test-utils test-comp",
     "test-utils": "cross-env NODE_ENV=test pnpm --filter @hs-element-ui/utils test",
     "test-comp": "cross-env NODE_ENV=test pnpm --filter @hs-element-ui/components test",
-    "build": "cross-env NODE_ENV=production pnpm --filter hs-element-ui build",
+    "test-hooks": "cross-env NODE_ENV=test pnpm --filter @hs-element-ui/hooks test",
+    "build": "run-s build-hooks build-comp",
+    "build-comp": "cross-env NODE_ENV=production pnpm --filter hs-element-ui build",
+    "build-hooks": "cross-env NODE_ENV=production pnpm --filter @hs-element-ui/hooks build",
     "build:dev": "cross-env NODE_ENV=development pnpm --filter hs-element-ui build:watch"
   },
   "keywords": [],

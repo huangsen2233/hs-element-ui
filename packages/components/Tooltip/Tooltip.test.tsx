@@ -1,7 +1,7 @@
 import { describe, test, it, expect, vi, beforeEach } from "vitest";
 import { withInstall } from "@hs-element-ui/utils";
 import { mount } from "@vue/test-utils";
-import { ErTooltip } from "./";
+import { HsTooltip } from "./";
 
 import Tooltip from "./Tooltip.vue";
 
@@ -12,18 +12,18 @@ const onVisibleChange = vi.fn();
 describe("Tooltip/index.ts", () => {
     // 测试 withInstall 函数是否被正确应用
     it("should be exported with withInstall()", () => {
-        expect(ErTooltip.install).toBeDefined();
+        expect(HsTooltip.install).toBeDefined();
     });
 
     // 测试 Tooltip 组件是否被正确导出
     it("should be exported Tooltip component", () => {
-        expect(ErTooltip).toBe(Tooltip);
+        expect(HsTooltip).toBe(Tooltip);
     });
 
     // 可选：测试 withInstall 是否增强了 Tooltip 组件的功能
     test("should enhance Tooltip component", () => {
         const enhancedTooltip = withInstall(Tooltip);
-        expect(enhancedTooltip).toBe(ErTooltip);
+        expect(enhancedTooltip).toBe(HsTooltip);
         // 这里可以添加更多测试，确保 withInstall 增强了组件的特定功能
     });
 

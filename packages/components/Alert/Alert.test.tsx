@@ -111,7 +111,7 @@ describe("Alert.vue", () => {
             },
         });
         //class
-        const rootNode = wrapper.find(".hs-alert");
+        const rootNode = wrapper.find(".er-alert");
         expect(rootNode.classes()).toContain("text-center");
     });
 
@@ -119,7 +119,7 @@ describe("Alert.vue", () => {
         const wrapper = mount(Alert, {
             props: { closable: false },
         });
-        expect(wrapper.find(".hs-alert__close").exists()).toBe(false);
+        expect(wrapper.find(".er-alert__close").exists()).toBe(false);
     });
 
     it("should toggle visibility when open and close methods are called", async () => {
@@ -127,9 +127,9 @@ describe("Alert.vue", () => {
             props: { title, closable: false },
         });
         await wrapper.vm.close();
-        expect(wrapper.find(".hs-alert").attributes().style).toBe("display: none;");
+        expect(wrapper.find(".er-alert").attributes().style).toBe("display: none;");
         await wrapper.vm.open();
-        expect(wrapper.find(".hs-alert").attributes().style).toBe("");
+        expect(wrapper.find(".er-alert").attributes().style).toBe("");
     });
 });
 
