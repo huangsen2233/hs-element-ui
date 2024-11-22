@@ -19,6 +19,8 @@ function handleItemClick(item: CollapseItemName) {
     // 手风琴模式
     if (props.accordion) {
         _activeNames = [_activeNames[0] === item ? "" : item]
+        updateActiveNames(_activeNames)
+        return
     }
 
     const index = _activeNames.indexOf(item)
@@ -43,7 +45,7 @@ provide(COLLAPSE_CTX_KEY, {
 
 watchEffect(() => {
     if (props.accordion && props.modelValue.length > 1) {
-        debugWarn(COMPONENT_NAME, 'hs-collapse: accordion mode only support one collapse item!')
+        debugWarn(COMPONENT_NAME, 'accordion mode should only have one active item')
     }
 })
 

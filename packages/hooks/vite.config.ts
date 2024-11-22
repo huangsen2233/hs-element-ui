@@ -6,6 +6,7 @@ import dts from "vite-plugin-dts";
 
 export default defineConfig({
     plugins: [
+        // 生成 .d.ts 类型声明文件
         dts({
             include: ["./**/*.ts"],
             exclude: ["./vite.config.ts"],

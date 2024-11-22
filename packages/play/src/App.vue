@@ -32,6 +32,14 @@ const activeNames = ref(['1', '2'])
   </div>
 
   <hs-alert type="success" center>警告组件</hs-alert>
+
+  <hs-tooltip content="tooltip content info" trigger="click">
+    <div style="background: #ddd; padding:5px;">点击弹出提示</div>
+  </hs-tooltip>
+
+  <hs-popconfirm title="确定删除吗?">
+    <span>删除</span>
+  </hs-popconfirm>  
 </template>
 
 <style scoped>

@@ -13,8 +13,8 @@
     "test-comp": "cross-env NODE_ENV=test pnpm --filter @hs-element-ui/components test",
     "test-hooks": "cross-env NODE_ENV=test pnpm --filter @hs-element-ui/hooks test",
     "build": "run-s build-hooks build-comp",
-    "build-comp": "cross-env NODE_ENV=production pnpm --filter hs-element-ui build",
     "build-hooks": "cross-env NODE_ENV=production pnpm --filter @hs-element-ui/hooks build",
+    "build-comp": "cross-env NODE_ENV=production pnpm --filter hs-element-ui build",
     "build:dev": "cross-env NODE_ENV=development pnpm --filter hs-element-ui build:watch"
   },
   "keywords": [],
