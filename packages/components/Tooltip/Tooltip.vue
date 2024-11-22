@@ -73,8 +73,9 @@ triggerStrategyMap.set("contextmenu", () => {
 
 let popperInstance: null | Instance
 function destroyPopperInstance() {
-    if (isNil(popperInstance)) return
-    popperInstance.destroy()
+    // isNil 判断一个值是否为 null 或 undefined
+    // if (isNil(popperInstance)) return
+    popperInstance?.destroy()
     popperInstance = null
 }
 

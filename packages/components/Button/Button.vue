@@ -93,7 +93,7 @@ const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration, 
             :icon="icon"
             :style="iconStyle"
             size="1x"
-        ></hs-icon>
+        />
 
         <slot></slot>
     </component>
