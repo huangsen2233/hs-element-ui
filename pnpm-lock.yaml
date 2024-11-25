@@ -108,6 +108,9 @@ importers:
       vue-tsc:
         specifier: ^1.8.27
         version: 1.8.27(typescript@5.6.3)
+      vue3-i18n:
+        specifier: ^1.1.5
+        version: 1.1.5(vue@3.5.12(typescript@5.6.3))
 
   packages/components: {}
 
@@ -158,10 +161,19 @@ importers:
         version: 1.0.0-rc.44(@algolia/client-search@4.24.0)(@types/node@20.16.11)(@types/react@18.3.11)(async-validator@4.2.5)(postcss@8.4.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)(terser@5.36.0)(typescript@5.6.3)
 
   packages/hooks:
+    dependencies:
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+      vue:
+        specifier: ^3.4.27
+        version: 3.5.12(typescript@5.6.3)
     devDependencies:
       vite-plugin-dts:
         specifier: ^3.9.1
         version: 3.9.1(@types/node@20.16.11)(rollup@4.24.0)(typescript@5.6.3)(vite@5.4.9(@types/node@20.16.11)(terser@5.36.0))
+
+  packages/locale: {}
 
   packages/play:
     dependencies:
@@ -3639,6 +3651,11 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '*'
+
+  vue3-i18n@1.1.5:
+    resolution: {integrity: sha512-DN5XfE0z6BnFxjbP/qW8AKI5QCex97L2l8z7G76ccTkfTsJ18n4mXGCy4K9H2rm4FlzDx/USPlPqQK64yXQqDg==}
+    peerDependencies:
+      vue: ^3.0.0
 
   vue@3.5.12:
     resolution: {integrity: sha512-CLVZtXtn2ItBIi/zHZ0Sg1Xkb7+PU32bJJ8Bmy7ts3jxXTcbfsEfBivFYYWz1Hur+lalqGAh65Coin0r+HRUfg==}
@@ -7663,6 +7680,10 @@ snapshots:
       '@vue/language-core': 1.8.27(typescript@5.6.3)
       semver: 7.6.3
       typescript: 5.6.3
+
+  vue3-i18n@1.1.5(vue@3.5.12(typescript@5.6.3)):
+    dependencies:
+      vue: 3.5.12(typescript@5.6.3)
 
   vue@3.5.12(typescript@5.6.3):
     dependencies:

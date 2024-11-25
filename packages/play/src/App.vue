@@ -2,6 +2,14 @@
 import { ref } from "vue"
 
 const activeNames = ref(['1', '2'])
+
+const dropdownItem = [
+  { command: 1, label:'下拉a', disabled: false },
+  { command: 2, label:'下拉b', disabled: false },
+  { command: 3, label:'下拉c', disabled: true },
+  { command: 4, label:'下拉d', disabled: true },
+]
+
 </script>
 
 <template>
@@ -40,6 +48,14 @@ const activeNames = ref(['1', '2'])
   <hs-popconfirm title="确定删除吗?">
     <span>删除</span>
   </hs-popconfirm>  
+
+  <hs-dropdown :items="dropdownItem" disabled>
+    dropdown list
+  </hs-dropdown>
+
+  <hs-dropdown :items="dropdownItem">
+    dropdown list
+  </hs-dropdown>
 </template>
 
 <style scoped>

@@ -44,7 +44,8 @@
     "typescript": "^5.5.5",
     "vite": "^5.1.4",
     "vitest": "^1.4.0",
-    "vue-tsc": "^1.8.27"
+    "vue-tsc": "^1.8.27",
+    "vue3-i18n": "^1.1.5"
   },
   "dependencies": {
     "@hs-element-ui/hooks": "workspace:*",
@@ -52,8 +53,8 @@
     "@hs-element-ui/utils": "workspace:*",
     "@vitest/coverage-v8": "^1.4.0",
     "@vue/test-utils": "^2.4.5",
-    "jsdom": "^24.0.0",
     "hs-element-ui": "workspace:*",
+    "jsdom": "^24.0.0",
     "lodash-es": "^4.17.21",
     "vue": "^3.4.19"
   }

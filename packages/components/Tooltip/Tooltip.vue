@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, type Ref, computed, watchEffect, watch, onUnmounted } from 'vue'
-import { bind, debounce, isNil, type DebouncedFunc } from 'lodash-es'
+import { bind, debounce, type DebouncedFunc } from 'lodash-es'
 import { createPopper, type Instance } from "@popperjs/core";
 import type { TooltipProps, TooltipEmits, TooltipInstance } from './types'
 import { useClickOutside } from '@hs-element-ui/hooks'
