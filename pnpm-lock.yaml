@@ -11,6 +11,9 @@ importers:
       '@hs-element-ui/hooks':
         specifier: workspace:*
         version: link:packages/hooks
+      '@hs-element-ui/locale':
+        specifier: workspace:*
+        version: link:packages/locale
       '@hs-element-ui/theme':
         specifier: workspace:*
         version: link:packages/theme

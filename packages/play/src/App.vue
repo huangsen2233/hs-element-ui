@@ -45,7 +45,7 @@ const dropdownItem = [
     <div style="background: #ddd; padding:5px;">点击弹出提示</div>
   </hs-tooltip>
 
-  <hs-popconfirm title="确定删除吗?">
+  <hs-popconfirm title="are you sure delete?">
     <span>删除</span>
   </hs-popconfirm>  
 

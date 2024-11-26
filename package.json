@@ -51,6 +51,7 @@
     "@hs-element-ui/hooks": "workspace:*",
     "@hs-element-ui/theme": "workspace:*",
     "@hs-element-ui/utils": "workspace:*",
+    "@hs-element-ui/locale": "workspace:*",
     "@vitest/coverage-v8": "^1.4.0",
     "@vue/test-utils": "^2.4.5",
     "hs-element-ui": "workspace:*",
