@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
+import { HsMessage } from 'hs-element-ui'
 
 const activeNames = ref(['1', '2'])
 
@@ -10,6 +11,21 @@ const dropdownItem = [
   { command: 4, label:'下拉d', disabled: true },
 ]
 
+function onSuccessMsg() {
+  HsMessage.success('成功消息')
+}
+
+function onErrorMsg() {
+  HsMessage.error('失败消息')
+}
+
+function onWarningMsg() {
+  HsMessage({
+    showClose: true,
+    message: '警告消息',
+    type: 'warning',
+  })
+}
 </script>
 
 <template>
@@ -56,6 +72,10 @@ const dropdownItem = [
   <hs-dropdown :items="dropdownItem">
     dropdown list
   </hs-dropdown>
+
+  <hs-button @click="onSuccessMsg">成功消息</hs-button>
+  <hs-button @click="onErrorMsg">失败消息</hs-button>
+  <hs-button @click="onWarningMsg">警告消息</hs-button>
 </template>
 
 <style scoped>

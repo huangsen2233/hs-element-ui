@@ -4,18 +4,17 @@ import HsTooltip from '../Tooltip/Tooltip.vue'
 import HsButton from '../Button/Button.vue'
 import HsIcon from '../Icon/Icon.vue'
 import { addUnit } from '@hs-element-ui/utils'
+import { useLocale } from '@hs-element-ui/hooks'
 import type { PopconfirmProps, PopconfirmEmits } from './types'
 import type { TooltipInstance } from '../Tooltip'
 
 defineOptions({ name: 'HsPopconfirm' })
 
-const tooltipRef = ref<TooltipInstance>()
-
 const props = withDefaults(defineProps<PopconfirmProps>(), {
     title: '',
     confirmButtonType: 'primary',
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'No',
+    // confirmButtonText: 'Yes',
+    // cancelButtonText: 'No',
     icon: 'question-circle',
     iconColor: '#f90',
     hideAfter: 200,
@@ -24,7 +23,10 @@ const props = withDefaults(defineProps<PopconfirmProps>(), {
 
 const emits = defineEmits<PopconfirmEmits>()
 
+const tooltipRef = ref<TooltipInstance>()
 const style = computed(() => ({ width: addUnit(props.width) }))
+
+const locale = useLocale()
 
 function hidePoper() {
     tooltipRef.value?.hide()
@@ -56,7 +58,7 @@ function cancel(e: MouseEvent) {
                         :type="cancelButtonType"
                         @click="cancel"
                     >
-                        {{ cancelButtonText  }}
+                        {{ cancelButtonText || locale.t('popconfirm.cancelButtonText') }}
                     </hs-button>
                     <hs-button
                         class="er-popconfirm__confirm"
@@ -64,7 +66,7 @@ function cancel(e: MouseEvent) {
                         :type="confirmButtonType"
                         @click="confrim"
                     >
-                        {{ confirmButtonText  }}
+                        {{ confirmButtonText || locale.t('popconfirm.confirmButtonText') }}
                     </hs-button>
                 </div>
             </div>

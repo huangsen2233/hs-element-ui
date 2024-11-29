@@ -40,7 +40,8 @@ function handleItemClick(e:DropdownItemProps) {
     !isNil(e.command) && emits('command', e.command)
 }
 
-!TEST && useDisabledStyle()
+// !TEST && useDisabledStyle()
+useDisabledStyle()
 
 provide<DropdownContext>(DROPDOWN_CTX_KEY, {
     handleItemClick,

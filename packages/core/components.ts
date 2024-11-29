@@ -9,6 +9,7 @@ import {
     HsPopconfirm,
     HsDropdown,
     HsDropdownItem,
+    HsMessage,
 } from '@hs-element-ui/components'
 import type { Plugin } from 'vue'
 
@@ -23,4 +24,5 @@ export default [
     HsPopconfirm,
     HsDropdown,
     HsDropdownItem,
+    HsMessage,
 ] as Plugin[]
