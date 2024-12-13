@@ -14,7 +14,7 @@ import { useId, useZIndex } from "@hs-element-ui/hooks";
 import { isString, findIndex, set, each, get } from "lodash-es";
 import MessageConstructor from "./Message.vue";
 
-// 存放实例的数组
+// 存放 message 实例的数组
 const instances: MessageInstance[] = shallowReactive([]);
 
 const { nextZIndex } = useZIndex();
@@ -55,9 +55,9 @@ const createMessage = (props: CreateMessageProps): MessageInstance => {
         zIndex: nextZIndex(),
         onDestory: destory,
     };
-    // h 函数生成vnode
+    // h 函数生成 vnode
     const vnode = h(MessageConstructor, _props);
-    // render 函数生成 vnode树
+    // render 函数生成 vnode 树
     render(vnode, container);
 
     document.body.appendChild(container.firstElementChild!);

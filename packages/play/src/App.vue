@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import { HsMessage } from 'hs-element-ui'
+import { HsMessage, HsNotification } from 'hs-element-ui'
 
 const activeNames = ref(['1', '2'])
 
@@ -24,6 +24,22 @@ function onWarningMsg() {
     showClose: true,
     message: '警告消息',
     type: 'warning',
+  })
+}
+
+function onSuccNot() {
+  HsNotification.success({
+    title: '成功通知',
+    message: '这是一条成功的消息',
+    position: 'top-right',
+  })
+}
+
+function onWarningNot() {
+  HsNotification({
+    title: '警告通知',
+    message: '这是一条警告的消息',
+    position: 'bottom-left',
   })
 }
 </script>
@@ -76,6 +92,9 @@ function onWarningMsg() {
   <hs-button @click="onSuccessMsg">成功消息</hs-button>
   <hs-button @click="onErrorMsg">失败消息</hs-button>
   <hs-button @click="onWarningMsg">警告消息</hs-button>
+
+  <hs-button @click="onSuccNot">成功通知</hs-button>
+  <hs-button @click="onWarningNot">警告通知</hs-button>
 </template>
 
 <style scoped>

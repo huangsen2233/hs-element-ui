@@ -45,7 +45,7 @@ function clearTimer() {
     clearTimeout(timer);
 }
 
-// 关闭
+// 关闭 message 组件
 function close() {
     visible.value = false;
 }
@@ -54,7 +54,7 @@ watch(visible, (val) => {
     if (!val) boxHeight.value = -props.offset; // 使得退出的动画更加流畅
 });
 
-// 监听 esc 键关闭 message
+// 监听 esc 键关闭 message 组件
 useEventListener(document, "keydown", (e: Event) => {
     const { code } = e as KeyboardEvent;
     if (code === "Escape") close();
