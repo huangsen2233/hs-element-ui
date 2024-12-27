@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, reactive } from "vue"
 import { HsMessage, HsNotification } from 'hs-element-ui'
 
 const activeNames = ref(['1', '2'])
+
+const form = reactive({
+  name: 'hs',
+  age: 26,
+  hobby: 'code'
+})
 
 const dropdownItem = [
   { command: 1, label:'下拉a', disabled: false },
@@ -95,6 +101,10 @@ function onWarningNot() {
 
   <hs-button @click="onSuccNot">成功通知</hs-button>
   <hs-button @click="onWarningNot">警告通知</hs-button>
+
+  <hs-input v-model="form.name" style="width: 200px;" />
+  <hs-input v-model="form.age" :showPassword="true" type="password"/>
+  <hs-input v-model="form.hobby" type="textarea"></hs-input>
 </template>
 
 <style scoped>
