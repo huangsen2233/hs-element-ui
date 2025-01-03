@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { throttle } from 'lodash-es'
 import type { ButtonProps, ButtonEmits, ButtonInstance } from './types'
+import ErIcom from '../components/Icon/Icon.vue'
 
 defineOptions({
     name: 'ErButton',
@@ -31,6 +33,16 @@ const slots = defineSlots()
 
 const _ref = ref<HTMLButtonElement>()
 
+const handleBtnClick = (e: MouseEvent) => emits('click', e)
+
+const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
+
+defineExpose<ButtonInstance>({
+    ref: _ref,
+    disabled: props.disabled,
+    type: props.type,
+    size: props.size,
+})
 </script>
 
 <template>
@@ -50,6 +62,7 @@ const _ref = ref<HTMLButtonElement>()
             'is-loading': loading,
             'is-disabled': disabled
         }"
+        @click="(e: MouseEvent) => useThrottle ? handleBtnClickThrottle(e) : handleBtnClick(e)"
     >
         <slot></slot>
     </component>
