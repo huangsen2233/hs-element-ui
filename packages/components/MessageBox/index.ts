@@ -3,9 +3,9 @@ import { set } from "lodash-es";
 
 import type { App } from "vue";
 
-export const ErMessageBox = MessageBox;
+export const HsMessageBox = MessageBox;
 
-set(ErMessageBox, "install", (app: App) => {
+set(HsMessageBox, "install", (app: App) => {
     app.config.globalProperties.$msgbox = MessageBox;
     app.config.globalProperties.$messagebox = MessageBox;
     app.config.globalProperties.$alert = MessageBox.alert;
@@ -13,5 +13,5 @@ set(ErMessageBox, "install", (app: App) => {
     app.config.globalProperties.$prompt = MessageBox.prompt;
 });
 
-export default ErMessageBox;
+export default HsMessageBox;
 export * from "./types";

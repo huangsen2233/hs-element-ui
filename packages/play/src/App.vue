@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue"
-import { HsMessage, HsNotification } from 'hs-element-ui'
+import { HsMessage, HsNotification, HsMessageBox } from 'hs-element-ui'
+import ErButton from "./components/Button/Button.vue"
 
 const activeNames = ref(['1', '2'])
 
@@ -48,9 +49,22 @@ function onWarningNot() {
     position: 'bottom-left',
   })
 }
+
+function openConfirm() {
+  HsMessageBox.confirm('这是一条消息提示', '标题名称', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  }).then((action: string) => {
+    console.log("确定", action)
+  }).catch((action: string) => {
+    console.log("取消", action)
+  })
+}
 </script>
 
 <template>
+  <er-button type="danger" size="large">er按钮</er-button>
   <hs-button
     type="primary"
     size="small"
@@ -58,6 +72,14 @@ function onWarningNot() {
     icon="search"
   >
     按钮aaa
+  </hs-button>
+
+  <hs-button
+    type="primary"
+    size="small"
+    tag="div"
+  >
+    自定义标签-按钮
   </hs-button>
 
   <hs-button-group type="primary" size="large">
@@ -105,6 +127,8 @@ function onWarningNot() {
   <hs-input v-model="form.name" style="width: 200px;" />
   <hs-input v-model="form.age" :showPassword="true" type="password"/>
   <hs-input v-model="form.hobby" type="textarea"></hs-input>
+
+  <hs-button @click="openConfirm" plain>消息盒子弹框</hs-button>
 </template>
 
 <style scoped>

@@ -18,7 +18,7 @@ defineOptions({
 const props = withDefaults(defineProps<MessageBoxProps>(), {
     lockScroll: true,
     showClose: true,
-    closeOnClickModal: true,
+    closeOnClickModal: true, // 是否可通过点击遮罩层关闭 MessageBox
     confirmButtonType: "primary",
     roundButton: false,
     boxType: "",
@@ -51,19 +51,20 @@ watch(
     val => {
         if (val) state.zIndex = nextZIndex();
         if (props.boxType !== 'prompt') return
-
         if (!val) return
-
         nextTick(() => {
+            // 聚焦
             inputRef.value && inputRef.value.focus()
         })
     }
 )
 
+// 点击遮罩层关闭 MessageBox
 function handleWrapperClick() {
     props.closeOnClickModal && handleAction("close");
 }
 
+// 按下回车键确认提交 input 内容
 function handleInputEnter(e: KeyboardEvent) {
     if (state.inputType === "textarea") return;
     e.preventDefault();
@@ -71,6 +72,7 @@ function handleInputEnter(e: KeyboardEvent) {
 }
 
 function handleAction(action: MessageBoxAction) {
+    //关闭前的回调函数
     isFunction(props.beforeClose)
         ? props.beforeClose(action, state, () => doAction(action, state.inputValue))
         : doAction(action, state.inputValue);
@@ -85,12 +87,12 @@ function handleClose() {
     <transition name="fade-in-linear" @after-leave="destroy">
         <hs-overlay v-show="(visible as Ref).value" :z-index="state.zIndex" mask>
             <div role="dialog" class="er-overlay-message-box" @click="handleWrapperClick">
-                <div ref="rootRef" :class="[
-                    'er-message-box',
-                    {
-                        'is-center': state.center,
-                    },
-                ]" @click.stop>
+                <!-- @click.stop 阻止内部元素的点击事件冒泡关闭 messagebox -->
+                <div 
+                    ref="rootRef" 
+                    :class="['er-message-box', {'is-center': state.center}]" 
+                    @click.stop
+                >
                     <div v-if="!isNil(state.title)" ref="headerRef" class="er-message-box__header"
                         :class="{ 'show-close': state.showClose }">
                         <div class="er-message-box__title">
