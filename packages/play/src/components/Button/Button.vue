@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, computed, inject } from 'vue'
 import { throttle } from 'lodash-es'
 import type { ButtonProps, ButtonEmits, ButtonInstance } from './types'
-import ErIcom from '../components/Icon/Icon.vue'
+import ErIcon  from '../Icon/Icon.vue'
+import { BUTTON_GROUP_CTX_KEY } from './constants'
 
 defineOptions({
     name: 'ErButton',
@@ -28,20 +29,28 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 const emits = defineEmits<ButtonEmits>(
     
 )
-
 const slots = defineSlots()
 
 const _ref = ref<HTMLButtonElement>()
 
+const ctx = inject(BUTTON_GROUP_CTX_KEY, void 0)
+const type = computed(() => (ctx?.type ?? props.type ?? ''))
+const size = computed(() => (ctx?.size ?? props.size ?? ''))
+const disabled = computed(() => (ctx?.disabled ?? props.disabled ?? false))
+
+const iconStyle = computed(() => ({
+    marginRight: slots.default ? '6px': '0'
+}))
+
 const handleBtnClick = (e: MouseEvent) => emits('click', e)
 
-const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
+const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration, { trailing: false })
 
 defineExpose<ButtonInstance>({
     ref: _ref,
-    disabled: props.disabled,
-    type: props.type,
-    size: props.size,
+    disabled,
+    type,
+    size,
 })
 </script>
 
@@ -64,6 +73,27 @@ defineExpose<ButtonInstance>({
         }"
         @click="(e: MouseEvent) => useThrottle ? handleBtnClickThrottle(e) : handleBtnClick(e)"
     >
+        <!-- loading 图标 -->
+        <template v-if="loading">
+            <slot name="loading">
+                <er-icon
+                    class="loading-icon"
+                    :icon="loadingIcon ?? 'spinner'"
+                    :style="iconStyle"
+                    spin
+                    size="1x"
+                ></er-icon>
+            </slot>
+        </template>
+        
+        <!-- 传入的图标 -->
+        <er-icon
+            v-if="icon && !loading"
+            :icon="icon"
+            :style="iconStyle"
+            size="1x"
+        />
+        
         <slot></slot>
     </component>
 </template>
