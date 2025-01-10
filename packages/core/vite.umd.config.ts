@@ -34,7 +34,7 @@ export default defineConfig({
     plugins: [
         vue(), 
         visualizer({ filename: './dist/stats.umd.html' }),
-        // 压缩为 gz 格式
+        // 压缩 umd 格式的打包产物为 gz 格式
         compression({ 
             include: /.(cjs|css)$/i,
         }),

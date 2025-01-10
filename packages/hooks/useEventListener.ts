@@ -13,6 +13,7 @@ export default function useEventListener(
     handler: (e: Event) => any
 ) {
     if (isRef(target)) {
+        // 监听目标元素是否改变
         watch(target, (val, oldVal) => {
             oldVal?.removeEventListener(event, handler);
             val?.addEventListener(event, handler);

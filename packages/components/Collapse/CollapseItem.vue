@@ -22,7 +22,7 @@ function handleClick() {
         class="er-collapse-item"
         :class="{ 'is-disabled': disabled }"
     >
-        <!-- 标题区域 -->
+        <!-- 标题 -->
         <div
             class="er-collapse-item__header"
             :id="`item-header-${name}`"
@@ -40,7 +40,7 @@ function handleClick() {
             <er-icon icon="angle-right" class="header-angle" />
         </div>
 
-        <!-- 内容区域 -->
+        <!-- 内容 -->
         <transition name="slide" v-on="transitionEvents"> 
             <div class="er-collapse-item__wapper" v-show="isActive">
                 <div class="er-collapse-item__content" :id="`item-content-${name}`">

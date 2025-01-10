@@ -1,7 +1,7 @@
 import { each, isFunction } from 'lodash-es'
 import shell from 'shelljs'
 
-// 插件：打包前删除一些文件夹
+// 自定义插件：在打包前打包后执行一些操作
 export default function hooksPlugin ({
     rmFiles = [],
     beforeBuild,

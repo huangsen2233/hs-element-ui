@@ -35,7 +35,7 @@
     &.is-active {
         border-bottom-color: transparent;
         .header-angle {
-        transform: rotate(90deg);
+            transform: rotate(90deg);
         }
     }
     .header-angle {

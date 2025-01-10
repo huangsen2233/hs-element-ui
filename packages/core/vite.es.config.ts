@@ -93,7 +93,7 @@ export default defineConfig({
     ],
     build: {
         outDir: 'dist/es', 
-        cssCodeSplit: true, // 开启 CSS 代码分割, 分包
+        cssCodeSplit: true, // 开启 CSS 代码分包
         minify: false,
         lib: {
             entry: resolve(__dirname, './index.ts'),

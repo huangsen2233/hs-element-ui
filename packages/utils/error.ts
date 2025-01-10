@@ -11,6 +11,7 @@ export function throwError(scope: string, msg: string) {
     throw new ErUIError(`[${scope}]: ${msg}`)
 }
 
+// 提示组件库UI的警告报错信息
 export function debugWarn(error: Error): void;
 export function debugWarn(scope: string, msg: string): void;
 export function debugWarn(scope: string | Error, msg?: string) {
