@@ -59,6 +59,7 @@ const _createI18n = (opts?: ConfigProviderContext) => {
     });
 };
 
+// 管理全局配置
 export function provideGlobalConfig(
     config: MaybeRef<ConfigProviderContext> = { locale: English },
     app?: App,

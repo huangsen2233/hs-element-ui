@@ -20,12 +20,13 @@ Form 表单组件 “集大成者” - 依赖注入、开源库封装实现表�
     - core # npm 包入口
     - docs # 文档目录
     - hooks # 组合式API hooks 目录
+    - locales # 国际化
     - play # 组件开发实验室
     - theme # 主题目录
     - utils # 工具函数目录
 
 ## components
-存放 SFC 单文件组件的目录，例如 Button 文件夹下：
+存放 SFC 单文件组件的目录文件，例如 Button 文件夹下：
     - Button.vue # 组件
     - Button.test.tsx # 单元测试
     - type.ts # 类型定义
