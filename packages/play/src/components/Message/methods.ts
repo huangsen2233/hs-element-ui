@@ -82,7 +82,7 @@ const createMessage = (props: CreateMessageProps): MessageInstance => {
 export function getLastBottomOffset(this: MessageProps) {
     const idx = findIndex(instances, { id: this.id });
     if (idx <= 0) return 0;
-    // get 访问对象指定属性的值
+    // get 根据传入的属性返回属性值
     return get(instances, [idx - 1, "vm", "exposed", "bottomOffset", "value"]);
 }
 

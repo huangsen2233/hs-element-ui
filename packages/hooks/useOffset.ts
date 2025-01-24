@@ -12,6 +12,7 @@ interface UseOffsetResult {
 }
 
 export function useOffset(opts: UseOffsetOptions): UseOffsetResult {
+    // 获取上一个message组件的bottomOffset
     const lastBottomOffset = computed(() => opts.getLastBottomOffset());
 
     const topOffset = computed(() => opts.offset + lastBottomOffset.value);
