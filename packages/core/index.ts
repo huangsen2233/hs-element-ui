@@ -8,7 +8,7 @@ import '@hs-element-ui/theme/index.css'  // 引入主题样式
 library.add(fas)
 
 // app.use() 使用插件的方式将组件挂载到 vue 实例上
-const installer = makeInstaller(components)  
+const installer = makeInstaller(components)
 
 export * from '@hs-element-ui/components'
 export * from '@hs-element-ui/locale'

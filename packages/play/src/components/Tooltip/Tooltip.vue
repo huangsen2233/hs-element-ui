@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, type Ref, computed, watchEffect, watch, onUnmounted } from 'vue'
+import { ref, type Ref, computed, watchEffect, watch, onUnmounted, onMounted } from 'vue'
 import { bind, debounce, type DebouncedFunc } from 'lodash-es'
 import { createPopper, type Instance } from "@popperjs/core";
 import type { TooltipProps, TooltipEmits, TooltipInstance } from './types'
@@ -32,12 +32,12 @@ const dropdownEvents: Ref<Record<string, EventListener>> = ref({})
 const containerNode = ref<HTMLElement>()
 const popperNode = ref<HTMLElement>()
 const _triggerNode = ref<HTMLElement>()
-
 const triggerNode = computed(() => {
-    if (props.virtualRef) {
-        return props.virtualRef ?? _triggerNode.value
+    if (props.virtualTriggering) {
+        return (props.virtualRef as HTMLElement) ?? _triggerNode.value;
     }
-})
+    return _triggerNode.value as HTMLElement;
+});
 
 const popperOptions = computed(() => ({
     placement: props.placement,
@@ -163,7 +163,7 @@ watchEffect(() => {
 })
 
 useEvenstToTiggerNode(props, triggerNode, events, () => {
-    openDebounce?.cancel() 
+    openDebounce?.cancel()
     setVisible(false)
 })
 

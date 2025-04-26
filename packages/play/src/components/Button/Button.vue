@@ -26,9 +26,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
     loadingIcon: 'spinner',
 })
 
-const emits = defineEmits<ButtonEmits>(
-    
-)
+const emits = defineEmits<ButtonEmits>()
 const slots = defineSlots()
 
 const _ref = ref<HTMLButtonElement>()

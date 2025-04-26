@@ -55,7 +55,7 @@ const createMessage = (props: CreateMessageProps): MessageInstance => {
         zIndex: nextZIndex(),
         onDestory: destory,
     };
-    // h 函数生成 vnode
+    // h 函数(也可以写成 createVNode 函数)生成 vnode
     const vnode = h(MessageConstructor, _props);
     // render 函数生成 vnode 树
     render(vnode, container);
