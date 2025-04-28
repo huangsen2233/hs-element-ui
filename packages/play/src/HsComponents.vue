@@ -60,10 +60,14 @@ function openConfirm() {
     console.log("取消", action)
   })
 }
+
+const slots = defineSlots()
+console.log('slots', slots.default(), slots.default()[0].type);
+
 </script>
 
 <template>
-  <hs-button
+  <!-- <hs-button
     type="primary"
     size="small"
     :loading="true"
@@ -90,7 +94,6 @@ function openConfirm() {
   </hs-button-group>
 
   <div style="width: 300px;">
-    <!-- accordion 手风琴模式 -->
     <hs-collapse  v-model="activeNames"> 
       <hs-collapse-item name="1" title="标题1">内容111111</hs-collapse-item>
       <hs-collapse-item name="2" title="标题2">内容222222</hs-collapse-item>
@@ -124,11 +127,11 @@ function openConfirm() {
 
   <hs-input v-model="form.name" style="width: 200px;" />
   <hs-input v-model="form.age" :showPassword="true" type="password"/>
-  <hs-input v-model="form.hobby" type="textarea"></hs-input>
+  <hs-input v-model="form.hobby" type="textarea"></hs-input> -->
 
   <hs-button @click="openConfirm" plain>消息盒子弹框</hs-button>
+
+  <slot name="default">
+    <div>默认插槽内容</div>
+  </slot>
 </template>
-
-<style scoped>
-
-</style>

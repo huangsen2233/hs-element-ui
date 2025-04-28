@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
 import type { SwitchProps, SwitchEmits, SwitchInstance } from './types';
-import { debugWarn } from '@hs-element-ui/utils';
 import { useId } from '@hs-element-ui/hooks';
 
 defineOptions({

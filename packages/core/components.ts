@@ -15,6 +15,8 @@ import {
     HsMessageBox,
     HsLoading,
     HsSwitch,
+    HsSelect,
+    HsOption,
 } from '@hs-element-ui/components'
 import type { Plugin } from 'vue'
 
@@ -35,4 +37,6 @@ export default [
     HsMessageBox,
     HsLoading,
     HsSwitch,
+    HsSelect,
+    HsOption,
 ] as Plugin[]

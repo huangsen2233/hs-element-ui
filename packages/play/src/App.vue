@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import HsComponents from "./HsComponents.vue"
 import ErButton from "./components/Button/Button.vue"
 import ErAlert from "./components/Alert/Alert.vue"
@@ -13,8 +13,11 @@ import MessageBox from "./components/MessageBox/methods";
 import { HsSwitch } from 'hs-element-ui';
 // import { HsLoading } from "hs-element-ui"
 import { HsLoading } from "./components/Loading"
+// import { HsSelect, HsOption } from "hs-element-ui";
+import HsSelect from "./components/Select/Select.vue";
+import HsOption from "./components/Select/Option.vue";
 
-console.log(ErButton, "ErButton")
+const props = defineProps()
 
 const virtualRef = ref<HTMLElement>()
 const inputValue = ref<string>("")
@@ -56,11 +59,26 @@ const handleDirectiveLoadingClick = () => {
 }
 
 const checked = ref(0)
-
+const selectValue = ref('guangzhou')
+const options = [
+  { label: "beijing", value: "beijing" },
+  { label: "shanghai", value: "shanghai" },
+  { label: "guangzhou", value: "guangzhou" },
+  { label: 'shenzhen', value: 'shenzhen', disabled: true },
+]
 </script>
 
 <template>
-  <!-- <hs-components /> -->
+  <!-- <hs-components>
+    <template #header>组件插入头部列表</template>
+    <template #default>
+      <er-button type="success" size="large" icon='search'>成功按钮</er-button>
+      <div>默认插入内容1</div>
+      <div>默认插入内容22</div>
+      <div>默认插入内容333</div>
+    </template>
+    <template #footer>组件插入尾部列表底部</template>
+  </hs-components> -->
   <br />
 
   <er-button type="success" size="large" icon='search'>成功按钮</er-button>
@@ -106,6 +124,17 @@ const checked = ref(0)
 
   <hs-switch v-model="checked" :active-value="1" :inactive-value="0" />
   {{ checked }}
+
+
+  <!-- <hs-select v-model="selectValue" :options="options" clearable filterable /> -->
+  <hs-select v-model="selectValue" filterable clearable>
+    <hs-option value="beijing" label="北京"></hs-option>
+    <hs-option value="shanghai" label="上海"></hs-option>
+    <hs-option value="guangzhou" label="广州"></hs-option>
+    <hs-option value="shenzhen" label="深圳" disabled></hs-option>
+  </hs-select>
+
+
 </template>
 
 <style scoped>

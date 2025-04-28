@@ -7,6 +7,7 @@ import {
     type MaybeRef,
 } from "vue";
 
+// ??? 为什么要监听目标元素的变化？
 export default function useEventListener(
     target: MaybeRef<EventTarget | HTMLElement | void>,
     event: string,

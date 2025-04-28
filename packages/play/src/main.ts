@@ -5,3 +5,4 @@ import HsElementUi, { zhCn } from 'hs-element-ui'
 import 'hs-element-ui/dist/index.css'
 
 createApp(App).use(HsElementUi, { locale: zhCn }).mount('#app')
+// createApp(App).mount('#app')
