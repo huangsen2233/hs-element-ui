@@ -1,0 +1,20 @@
+{
+  "name": "@hs-element-ui/vite-plugins",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "module": "./.dist/index.js",
+  "types": "./.dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./.dist/index.js",
+      "types": "./.dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite-plugin-dts": "3.9.1"
+  }
+}
