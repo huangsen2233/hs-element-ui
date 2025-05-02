@@ -131,11 +131,12 @@ function createLoading(opts: LoadingOptionsResolved) {
 function resolveOptions(opts: LoadingOptions): LoadingOptionsResolved {
   let target: HTMLElement;
   // options中的target的类型 string | HTMLElement
-
   if (isString(opts.target)) {
     target = document.querySelector(opts.target) ?? document.body;
+  } else if (opts.target instanceof HTMLElement) {
+    target = opts.target;
   } else {
-    target = opts.target || document.body;
+    target = document.body;
   }
   return {
     parent: target === document.body || opts.body ? document.body : target,

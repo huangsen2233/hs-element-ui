@@ -4,7 +4,7 @@ import { debugWarn } from '@hs-element-ui/utils'
 import { COLLAPSE_CTX_KEY } from './constants'
 import type { CollapseEmits, CollapseProps, CollapseItemName } from './types'
 
-const COMPONENT_NAME = 'ErCollapse' as const
+const COMPONENT_NAME = 'HsCollapse' as const
 
 defineOptions({ name: COMPONENT_NAME })
 
