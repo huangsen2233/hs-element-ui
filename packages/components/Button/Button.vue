@@ -8,20 +8,10 @@ import type { ButtonProps, ButtonEmits, ButtonInstance } from './types'
 defineOptions({ name: 'HsButton' })
 
 const props = withDefaults(defineProps<ButtonProps>(), {
-    tag: 'button',
-    type: 'primary',
-    size: 'default',
-    nativeType: 'button',
-    disabled: false,
-    loading: false,
-    plain: false,
-    round: false,
-    circle: false,
-    autofocus: false,
+    tag: "button",
+    nativeType: "button",
     useThrottle: true,
     throttleDuration: 500,
-    icon: '',
-    loadingIcon: 'spinner',
 })
 
 const ctx = inject(BUTTON_GROUP_CTX_KEY, void 0)

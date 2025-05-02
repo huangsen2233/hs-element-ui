@@ -31,10 +31,10 @@ function moveStyles() {
     // try {
     //     readdirSync('./dist/es/theme')
     //     shell.mv('./dist/es/theme', './dist')
-    // } catch (_) { 
+    // } catch (_) {
     //     delay(moveStyles, TRY_MOVE_STYLES_DELAY)
     // }
-    
+
     readdir("./dist/es/theme", (err) => {
         if (err) return delay(moveStyles, TRY_MOVE_STYLES_DELAY);
         defer(() => shell.mv("./dist/es/theme", "./dist"))
@@ -92,7 +92,7 @@ export default defineConfig({
         }),
     ],
     build: {
-        outDir: 'dist/es', 
+        outDir: 'dist/es',
         cssCodeSplit: true, // 开启 CSS 代码分包
         minify: false,
         lib: {
@@ -110,6 +110,7 @@ export default defineConfig({
                 "async-validator",
             ],
             output: {
+                // 样式分包
                 assetFileNames: (assetInfo) => {
                     if (assetInfo.name === 'style.css') {
                         return 'index.css'
@@ -119,7 +120,7 @@ export default defineConfig({
                     }
                     return assetInfo.name as string
                 },
-                // 分包
+                // js逻辑分包
                 manualChunks: (id) => {
                     if (id.includes('node_modules')) {
                         return 'vendor'

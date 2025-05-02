@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, reactive, onMounted } from "vue";
 import HsComponents from "./HsComponents.vue"
 import ErButton from "./components/Button/Button.vue"
 import ErAlert from "./components/Alert/Alert.vue"
@@ -7,7 +7,6 @@ import ErTooltip from "./components/Tooltip/Tooltip.vue";
 import HsPopconfirm from "./components/Popconfirm/Popconfirm.vue";
 import HsDropdown from "./components/Dropdown/Dropdown.vue";
 import DropdownItem from "./components/Dropdown/DropdownItem.vue";
-import HsInput from './components/Input/Input.vue';
 import message from "./components/Message/methods";
 import MessageBox from "./components/MessageBox/methods";
 import { HsSwitch } from 'hs-element-ui';
@@ -17,7 +16,11 @@ import { HsLoading } from "./components/Loading"
 import HsSelect from "./components/Select/Select.vue";
 import HsOption from "./components/Select/Option.vue";
 
-const props = defineProps()
+// import { HsInput } from './components/Input';
+// import { HsForm, HsFormItem } from "./components/Form";
+
+import { HsForm, HsFormItem, HsInput } from "hs-element-ui";
+import { HsMessage, type FormInstance } from "hs-element-ui";
 
 const virtualRef = ref<HTMLElement>()
 const inputValue = ref<string>("")
@@ -66,6 +69,35 @@ const options = [
   { label: "guangzhou", value: "guangzhou" },
   { label: 'shenzhen', value: 'shenzhen', disabled: true },
 ]
+
+const formRef = ref<FormInstance>();
+const model = reactive({
+  name: "",
+  desc: "",
+});
+
+const rules = reactive({
+  name: [
+    { required: true, message: "请输入活动名称", trigger: "blur" },
+    { min: 3, max: 6, message: 'Length should be 3 to 5', trigger: ['blur', 'change'] },
+  ],
+  desc: [
+    { required: true, message: "请填写活动形式", trigger: "blur" }
+  ],
+});
+
+const onSubmit = () => {
+  formRef.value?.validate().then((valid) => {
+    if (valid) {
+      HsMessage.success("submit!");
+    }
+  });
+};
+
+const onReset = () => {
+  formRef.value?.resetFields();
+};
+
 </script>
 
 <template>
@@ -107,7 +139,7 @@ const options = [
 
   <br />
   <div :style="{ width: '300px' }">
-    <hs-input type="password" showPassword v-model="inputValue" placeholder="请输入"  />
+    <!-- <hs-input type="password" showPassword v-model="inputValue" placeholder="请输入"  /> -->
   </div>
 
   <er-button type="danger" @click="handleMsgClick">失败消息按钮</er-button>
@@ -116,7 +148,7 @@ const options = [
 
   <er-button type="primary" @click="handleServiceLoadingClick">service loading</er-button>
 
-  <er-button 
+  <er-button
     type="primary"
     v-loading.fullscreen.lock="loading"
     @click="handleDirectiveLoadingClick"
@@ -134,9 +166,17 @@ const options = [
     <hs-option value="shenzhen" label="深圳" disabled></hs-option>
   </hs-select>
 
+  <hs-form ref="formRef" :model="model" :rules="rules" style="width: 500px">
+    <hs-form-item label="Activity name" prop="name">
+      <hs-input v-model="model.name" />
+    </hs-form-item>
+    <hs-form-item label="Activity form" prop="desc">
+      <hs-input v-model="model.desc" type="textarea" />
+    </hs-form-item>
+    <hs-form-item>
+      <er-button type="primary" @click="onSubmit">Create</er-button>
+      <er-button @click="onReset">Reset</er-button>
+    </hs-form-item>
+  </hs-form>
 
 </template>
-
-<style scoped>
-
-</style>

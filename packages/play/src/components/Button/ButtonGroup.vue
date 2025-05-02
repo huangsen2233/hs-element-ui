@@ -2,8 +2,8 @@
 import type { ButtonGroupProps } from './types'
 import { BUTTON_GROUP_CTX_KEY } from './constants'
 import { provide, reactive, toRef } from 'vue'
-
-defineOptions({ name: 'ErButtonGroup' })
+ 
+defineOptions({ name: 'HsButtonGroup' })
 
 const props = defineProps<ButtonGroupProps>()
 

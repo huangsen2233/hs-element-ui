@@ -17,6 +17,8 @@ import {
     HsSwitch,
     HsSelect,
     HsOption,
+    HsForm,
+    HsFormItem,
 } from '@hs-element-ui/components'
 import type { Plugin } from 'vue'
 
@@ -39,4 +41,6 @@ export default [
     HsSwitch,
     HsSelect,
     HsOption,
+    HsForm,
+    HsFormItem,
 ] as Plugin[]

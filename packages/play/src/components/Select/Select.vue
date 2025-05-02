@@ -69,7 +69,7 @@ const isDisabled = computed(() => props.disabled);
 
 const showClear = computed(() => props.clearable && selectStates.mouseHover && selectStates.inputValue !== '');
 
-// 当前选中的 option
+// 当前高亮选中的 option
 const highlightedLine = computed(() => {
   let result: SelectOptionProps | void;
   if (hasChildren.value) {
@@ -179,6 +179,7 @@ function toggleVisible() {
   controlVisible(!isDropdownVisible.value)
 }
 
+// 清空
 function handleClear() {
   inputRef.value?.clear();
   selectStates.inputValue = '';
@@ -196,6 +197,7 @@ function findOption(value: string): SelectOptionProps | void {
   }
 }
 
+// 选择 option
 function handleSelect(opt: SelectOptionProps) {
   if (opt.disabled) return;
   selectStates.selectedOption = opt;
@@ -287,6 +289,7 @@ async function callRemoteMethod(method: Function, search: string) {
   return result;
 }
 
+// 自定义函数渲染 label
 function renderLabel(opt: SelectOptionProps): VNode | string {
   if (isFunction(props.renderLabel)) {
     return props.renderLabel(opt);
@@ -294,12 +297,7 @@ function renderLabel(opt: SelectOptionProps): VNode | string {
   return opt.label;
 }
 
-function setSelected() {
-  const opt = findOption(props.modelValue);
-  if (!opt) return;
-  selectStates.selectedOption = opt;
-  selectStates.inputValue = opt.label;
-}
+
 
 watch(() => props.options, (newVal) => {
   filteredOptions.value = newVal ?? [];
@@ -324,6 +322,13 @@ watch(
 onMounted(() => {
   setSelected()
 });
+
+const setSelected = () => {
+  const opt = findOption(props.modelValue);
+  if (!opt) return;
+  selectStates.selectedOption = opt;
+  selectStates.inputValue = opt.label;
+}
 
 provide<SelectContext>(SELECT_CTX_KEY, {
   handleSelect,

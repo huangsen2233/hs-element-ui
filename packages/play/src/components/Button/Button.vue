@@ -1,48 +1,34 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref, computed, inject } from 'vue'
 import { throttle } from 'lodash-es'
-import type { ButtonProps, ButtonEmits, ButtonInstance } from './types'
-import ErIcon  from '../Icon/Icon.vue'
+import HsIcon from '../Icon/Icon.vue'
 import { BUTTON_GROUP_CTX_KEY } from './constants'
+import type { ButtonProps, ButtonEmits, ButtonInstance } from './types'
 
-defineOptions({
-    name: 'ErButton',
-})
+defineOptions({ name: 'ErButton' })
 
 const props = withDefaults(defineProps<ButtonProps>(), {
-    tag: 'button',
-    type: 'primary',
-    size: 'default',
-    nativeType: 'button',
-    disabled: false,
-    loading: false,
-    plain: false,
-    round: false,
-    circle: false,
-    autofocus: false,
+    tag: "button",
+    nativeType: "button",
     useThrottle: true,
     throttleDuration: 500,
-    icon: '',
-    loadingIcon: 'spinner',
 })
 
-const emits = defineEmits<ButtonEmits>()
-const slots = defineSlots()
-
-const _ref = ref<HTMLButtonElement>()
-
 const ctx = inject(BUTTON_GROUP_CTX_KEY, void 0)
+
 const type = computed(() => (ctx?.type ?? props.type ?? ''))
 const size = computed(() => (ctx?.size ?? props.size ?? ''))
 const disabled = computed(() => (ctx?.disabled ?? props.disabled ?? false))
 
+const emits = defineEmits<ButtonEmits>()
+
+const slots = defineSlots()
+
+const _ref = ref<HTMLButtonElement>()
+
 const iconStyle = computed(() => ({
     marginRight: slots.default ? '6px': '0'
 }))
-
-const handleBtnClick = (e: MouseEvent) => emits('click', e)
-
-const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration, { trailing: false })
 
 defineExpose<ButtonInstance>({
     ref: _ref,
@@ -50,6 +36,13 @@ defineExpose<ButtonInstance>({
     type,
     size,
 })
+
+const handleBtnClick = (e: MouseEvent) => {
+    !props.loading && emits('click', e)
+}
+
+const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration, { trailing: false })
+
 </script>
 
 <template>
@@ -74,24 +67,24 @@ defineExpose<ButtonInstance>({
         <!-- loading 图标 -->
         <template v-if="loading">
             <slot name="loading">
-                <er-icon
+                <hs-icon
                     class="loading-icon"
                     :icon="loadingIcon ?? 'spinner'"
                     :style="iconStyle"
                     spin
                     size="1x"
-                ></er-icon>
+                ></hs-icon>
             </slot>
         </template>
-        
+
         <!-- 传入的图标 -->
-        <er-icon
+        <hs-icon
             v-if="icon && !loading"
             :icon="icon"
             :style="iconStyle"
             size="1x"
         />
-        
+
         <slot></slot>
     </component>
 </template>

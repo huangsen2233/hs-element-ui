@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { ref, computed, watch, useAttrs, shallowRef, nextTick } from "vue";
 import { useFocusController } from "@hs-element-ui/hooks";
-// 暂用 useId 代替 useFormItemInputId
-import { useId } from '@hs-element-ui/hooks'
-// import { useFormItem, useFormDisabled, useFormItemInputId } from "../Form";
 import { each, noop } from "lodash-es";
 import type { InputProps, InputEmits, InputInstance } from "./types";
-
 import Icon from "../Icon/Icon.vue";
-// import { debugWarn } from "@hs-element-ui/utils";
+import { useFormItem, useFormDisabled, useFormItemInputId } from "../Form";
+import { debugWarn } from "@hs-element-ui/utils";
 
 defineOptions({
     name: "HsInput",
@@ -29,14 +26,16 @@ const inputRef = shallowRef<HTMLInputElement>();
 const textareaRef = shallowRef<HTMLTextAreaElement>();
 
 const attrs = useAttrs();
+
 const _ref = computed(() => inputRef.value || textareaRef.value);
 
-// const isDisabled = useFormDisabled(); // 表单的disabled优先级高于input的disabled
-const isDisabled = computed(() => props.disabled);
+const isDisabled = useFormDisabled(); // 表单的disabled优先级高于input的disabled
+// const isDisabled = computed(() => props.disabled);
 
-// const { formItem } = useFormItem();
+const { formItem } = useFormItem();
 
-// const { inputId } = useFormItemInputId(props, formItem);
+const { inputId } = useFormItemInputId(props, formItem);
+
 
 // 是否展示清空按钮
 const showClear = computed(
@@ -60,7 +59,7 @@ const { wrapperRef, isFocused, handleFocus, handleBlur } = useFocusController(
     {
         afterBlur() {
             // 表单校验
-            // formItem?.validate("blur").catch((err) => debugWarn(err));
+            formItem?.validate("blur").catch((err) => debugWarn(err));
         },
     }
 );
@@ -70,7 +69,7 @@ const clear: InputInstance["clear"] = function () {
     each(["input", "change", "update:modelValue"], (e) => emits(e as any, ""));
     emits("clear");
     // 清空表单校验
-    // formItem?.clearValidate();
+    formItem?.clearValidate();
 };
 
 const focus: InputInstance["focus"] = async function () {
@@ -104,7 +103,7 @@ watch(
     (newVal) => {
         innerValue.value = newVal;
         // 触发表单校验
-        // formItem?.validate("change").catch((err) => debugWarn(err));
+        formItem?.validate("change").catch((err) => debugWarn(err));
     }
 );
 
@@ -118,19 +117,16 @@ defineExpose<InputInstance>({
 </script>
 
 <template>
-    <div 
-        class="er-input"
-        :class="{
-            [`er-input--${type}`]: type,
-            [`er-input--${size}`]: size,
-            'is-disabled': isDisabled,
-            'is-prepend': $slots.prepend,
-            'is-append': $slots.append,
-            'is-prefix': $slots.prefix,
-            'is-suffix': $slots.suffix,
-            'is-focus': isFocused,
-        }"
-    >
+    <div class="er-input" :class="{
+        [`er-input--${type}`]: type,
+        [`er-input--${size}`]: size,
+        'is-disabled': isDisabled,
+        'is-prepend': $slots.prepend,
+        'is-append': $slots.append,
+        'is-prefix': $slots.prefix,
+        'is-suffix': $slots.suffix,
+        'is-focus': isFocused,
+    }">
         <template v-if="type !== 'textarea'">
             <div v-if="$slots.prepend" class="er-input__prepend">
                 <slot name="prepend"></slot>
@@ -139,46 +135,20 @@ defineExpose<InputInstance>({
                 <span v-if="$slots.prefix" class="er-input__prefix">
                     <slot name="prefix"></slot>
                 </span>
-                <input
-                    class="er-input__inner"
-                    ref="inputRef"
-                    :id="useId().value"
-                    :type="showPassword ? (pwdVisible ? 'text' : 'password') : type" 
-                    :disabled="isDisabled"
-                    :readonly="readonly" 
-                    :autocomplete="autocomplete" 
-                    :placeholder="placeholder" 
-                    :autofocus="autofocus"
-                    :form="form" 
-                    v-model="innerValue" 
-                    v-bind="attrs" 
-                    @input="handleInput" 
-                    @change="handleChange"
-                    @focus="handleFocus" 
-                    @blur="handleBlur" 
-                />
+                <input class="er-input__inner" ref="inputRef" :id="inputId"
+                    :type="showPassword ? (pwdVisible ? 'text' : 'password') : type" :disabled="isDisabled"
+                    :readonly="readonly" :autocomplete="autocomplete" :placeholder="placeholder" :autofocus="autofocus"
+                    :form="form" v-model="innerValue" v-bind="attrs" @input="handleInput" @change="handleChange"
+                    @focus="handleFocus" @blur="handleBlur" />
                 <span v-if="$slots.suffix || showClear || showPwdArea" class="er-input__suffix">
                     <slot name="suffix"></slot>
                     <!-- noop 空函数，不执行任何操作 -->
-                    <Icon 
-                        icon="circle-xmark" 
-                        v-if="showClear" 
-                        class="er-input__clear" 
-                        @click="clear"
-                        @mousedown.prevent="noop" 
-                    /> 
-                    <Icon 
-                        icon="eye" 
-                        class="er-input__password" 
-                        v-if="showPwdArea && pwdVisible"
-                        @click="togglePwdVisible" 
-                    />
-                    <Icon 
-                        icon="eye-slash" 
-                        class="er-input__password" 
-                        v-if="showPwdArea && !pwdVisible"
-                        @click="togglePwdVisible" 
-                    />
+                    <Icon icon="circle-xmark" v-if="showClear" class="er-input__clear" @click="clear"
+                        @mousedown.prevent="noop" />
+                    <Icon icon="eye" class="er-input__password" v-if="showPwdArea && pwdVisible"
+                        @click="togglePwdVisible" />
+                    <Icon icon="eye-slash" class="er-input__password" v-if="showPwdArea && !pwdVisible"
+                        @click="togglePwdVisible" />
                 </span>
             </div>
             <div v-if="$slots.append" class="er-input__append">
@@ -186,22 +156,10 @@ defineExpose<InputInstance>({
             </div>
         </template>
         <template v-else>
-            <textarea 
-                class="er-textarea__wrapper" 
-                ref="textareaRef" 
-                :id="useId().value" 
-                :disabled="isDisabled"
-                :readonly="readonly" 
-                :autocomplete="autocomplete" 
-                :placeholder="placeholder" 
-                :autofocus="autofocus"
-                :form="form" 
-                v-model="innerValue" 
-                v-bind="attrs" 
-                @input="handleInput" 
-                @change="handleChange"
-                @focus="handleFocus" 
-                @blur="handleBlur">
+            <textarea class="er-textarea__wrapper" ref="textareaRef" :id="inputId" :disabled="isDisabled"
+                :readonly="readonly" :autocomplete="autocomplete" :placeholder="placeholder" :autofocus="autofocus"
+                :form="form" v-model="innerValue" v-bind="attrs" @input="handleInput" @change="handleChange"
+                @focus="handleFocus" @blur="handleBlur">
             </textarea>
         </template>
     </div>

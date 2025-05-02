@@ -2,7 +2,7 @@
 import { ref, computed, provide } from 'vue'
 import { omit, isNil } from 'lodash-es'
 import type { TooltipInstance } from '../Tooltip/types'
-import { type ButtonInstance, ErButton as HsButton, ErButtonGroup as HsButtonGroup } from '../Button'
+import { type ButtonInstance, HsButton, HsButtonGroup } from '../Button'
 import type {
     DropdownProps,
     DropdownEmits,

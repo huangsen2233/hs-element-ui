@@ -141,7 +141,6 @@
         padding: 12px;
     }
 }
-
 .er-button--small {
     --er-button-size: 24px;
     height: var(--er-button-size);
