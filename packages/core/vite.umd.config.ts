@@ -32,10 +32,10 @@ const isTest = process.env.NODE_ENV === "test"
 
 export default defineConfig({
     plugins: [
-        vue(), 
+        vue(),
         visualizer({ filename: './dist/stats.umd.html' }),
         // 压缩 umd 格式的打包产物为 gz 格式
-        compression({ 
+        compression({
             include: /.(cjs|css)$/i,
         }),
         hooks({
@@ -56,7 +56,7 @@ export default defineConfig({
         }),
     ],
     build: {
-        outDir: 'dist/umd', 
+        outDir: 'dist/umd',
         lib: {
             entry: resolve(__dirname, './index.ts'),
             name: 'HsElementUi', // 库的全局变量名
@@ -64,7 +64,7 @@ export default defineConfig({
             formats: ['umd'], // 指定构建的模块格式为 UMD(Universal Module Definition ),构建后的代码将兼容多种模块加载方式
         },
         rollupOptions: {
-            external: ['vue'],
+            external: ['vue'], // 排除 vue，不打包
             output: {
                 exports: 'named',
                 globals: {

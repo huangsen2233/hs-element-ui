@@ -10,7 +10,7 @@ next:
 
 
 ```bash
-npm i @eric-ui --save
+npm i hs-element-plus --save
 ```
 
 ## 开始使用
@@ -20,13 +20,13 @@ npm i @eric-ui --save
 
 ```js
 // 引入所有组件
-import EricUI from 'eric-ui'
+import HsElementPlus from 'hs-element-plus'
 // 引入样式
-import 'eric-ui/dist/style.css'
+import 'hs-element-plus/dist/index.css'
 
 import App from './App.vue'
 // 全局使用
-createApp(App).use(ErElement).mount('#app')
+createApp(App).use(HsElementPlus).mount('#app')
 ```
 
 ```vue
@@ -37,7 +37,7 @@ createApp(App).use(ErElement).mount('#app')
 
 **单个导入**
 
-Eric-UI 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
+hs-element-plus 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
 
 
 ```vue
@@ -45,9 +45,9 @@ Eric-UI 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
   <hs-button>我是 Button</hs-button>
 </template>
 <script>
-  import { ErButton } from ' er-element'
+  import { HsButton } from 'hs-element-plus'
   export default {
-    components: { ErButton },
+    components: { HsButton },
   }
 </script>
 ```

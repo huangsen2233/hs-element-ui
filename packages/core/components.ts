@@ -1,6 +1,6 @@
-import { 
-    HsButton, 
-    HsButtonGroup, 
+import {
+    HsButton,
+    HsButtonGroup,
     HsIcon,
     HsCollapse,
     HsCollapseItem,

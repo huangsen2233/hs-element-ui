@@ -1,32 +1,37 @@
 <script setup lang="ts">
 import { ref, computed, reactive, onMounted } from "vue";
 import HsComponents from "./HsComponents.vue"
-import ErButton from "./components/Button/Button.vue"
-import ErAlert from "./components/Alert/Alert.vue"
-import ErTooltip from "./components/Tooltip/Tooltip.vue";
-import HsPopconfirm from "./components/Popconfirm/Popconfirm.vue";
-import HsDropdown from "./components/Dropdown/Dropdown.vue";
-import DropdownItem from "./components/Dropdown/DropdownItem.vue";
-import message from "./components/Message/methods";
-import MessageBox from "./components/MessageBox/methods";
-import { HsSwitch } from 'hs-element-ui';
+// import ErButton from "./components/Button/Button.vue"
+// import ErAlert from "./components/Alert/Alert.vue"
+// import ErTooltip from "./components/Tooltip/Tooltip.vue";
+// import HsPopconfirm from "./components/Popconfirm/Popconfirm.vue";
+// import HsDropdown from "./components/Dropdown/Dropdown.vue";
+// import DropdownItem from "./components/Dropdown/DropdownItem.vue";
+// import message from "./components/Message/methods";
+// import MessageBox from "./components/MessageBox/methods";
+// import { HsSwitch } from 'hs-element-ui';
 // import { HsLoading } from "hs-element-ui"
-import { HsLoading } from "./components/Loading"
+// import { HsLoading } from "./components/Loading"
 // import { HsSelect, HsOption } from "hs-element-ui";
-import HsSelect from "./components/Select/Select.vue";
-import HsOption from "./components/Select/Option.vue";
+// import HsSelect from "./components/Select/Select.vue";
+// import HsOption from "./components/Select/Option.vue";
 
 // import { HsInput } from './components/Input';
 // import { HsForm, HsFormItem } from "./components/Form";
 
-import { HsForm, HsFormItem, HsInput } from "hs-element-ui";
-import { HsMessage, type FormInstance } from "hs-element-ui";
+// import { HsForm, HsFormItem, HsInput } from "hs-element-ui";
+import {
+  HsMessage,
+  type FormInstance,
+  HsLoading,
+  HsMessageBox as MessageBox,
+} from "hs-element-ui";
 
 const virtualRef = ref<HTMLElement>()
 const inputValue = ref<string>("")
 
 const handleMsgClick = () => {
-  message.error("这是一条失败的消息")
+  HsMessage.error("这是一条失败的消息")
 }
 
 const handleMsgBoxClick = () => {
@@ -34,9 +39,9 @@ const handleMsgBoxClick = () => {
     type: "warning",
     showCancelButton: true,
   }).then(() => {
-    message.success("成功")
+    HsMessage.success("成功")
   }).catch(() => {
-    message.info("取消")
+    HsMessage.info("取消")
   })
 }
 
@@ -48,7 +53,7 @@ const handleServiceLoadingClick = () => {
     background: "rgba(0, 0, 0, 0.7)",
   })
   setTimeout(() => {
-    // instance.close()
+    instance.close()
   }, 2000)
 }
 
@@ -98,13 +103,15 @@ const onReset = () => {
   formRef.value?.resetFields();
 };
 
+const activeNames = ref(['1', '2'])
+
 </script>
 
 <template>
   <!-- <hs-components>
     <template #header>组件插入头部列表</template>
     <template #default>
-      <er-button type="success" size="large" icon='search'>成功按钮</er-button>
+      <hs-button type="success" size="large" icon='search'>成功按钮</hs-button>
       <div>默认插入内容1</div>
       <div>默认插入内容22</div>
       <div>默认插入内容333</div>
@@ -113,27 +120,34 @@ const onReset = () => {
   </hs-components> -->
   <br />
 
-  <er-button type="success" size="large" icon='search'>成功按钮</er-button>
-  <er-alert  type="success" title="成功提示">成功类型的alert组件!</er-alert>
+  <hs-button type="success" size="large" icon='search'>成功按钮</hs-button>
+
+  <hs-alert  type="success" title="成功提示">成功类型的alert组件!</hs-alert>
+
+  <hs-collapse  v-model="activeNames">
+    <hs-collapse-item name="1" title="标题1">内容111111</hs-collapse-item>
+    <hs-collapse-item name="2" title="标题2">内容222222</hs-collapse-item>
+  </hs-collapse>
+
   <div ref="virtualRef">虚拟触发节点</div>
-  <er-tooltip
+  <hs-tooltip
     content="tooltip的提示内容"
     :virtualRef="virtualRef"
     :virtualTriggering="true"
     trigger="click"
   >
     tooltip文本
-  </er-tooltip>
+  </hs-tooltip>
 
   <hs-popconfirm title="确定删除吗">
-    <er-button type="primary">确认框</er-button>
+    <hs-button type="primary">确认框</hs-button>
   </hs-popconfirm>
 
   <hs-dropdown>
-    <er-button type="primary">下拉菜单</er-button>
+    <hs-button type="primary">下拉菜单</hs-button>
     <template v-slot:dropdown>
-      <dropdown-item label='a'  />
-      <dropdown-item label='b'  />
+      <hs-dropdown-item label='a'  />
+      <hs-dropdown-item label='b'  />
     </template>
   </hs-dropdown>
 
@@ -142,17 +156,17 @@ const onReset = () => {
     <!-- <hs-input type="password" showPassword v-model="inputValue" placeholder="请输入"  /> -->
   </div>
 
-  <er-button type="danger" @click="handleMsgClick">失败消息按钮</er-button>
+  <hs-button type="danger" @click="handleMsgClick">失败消息按钮</hs-button>
 
-  <er-button type="warning" @click="handleMsgBoxClick">警告消息弹框按钮</er-button>
+  <hs-button type="warning" @click="handleMsgBoxClick">警告消息弹框按钮</hs-button>
 
-  <er-button type="primary" @click="handleServiceLoadingClick">service loading</er-button>
+  <hs-button type="primary" @click="handleServiceLoadingClick">service loading</hs-button>
 
-  <er-button
+  <hs-button
     type="primary"
     v-loading.fullscreen.lock="loading"
     @click="handleDirectiveLoadingClick"
-  >directive loading</er-button>
+  >directive loading</hs-button>
 
   <hs-switch v-model="checked" :active-value="1" :inactive-value="0" />
   {{ checked }}
@@ -174,8 +188,8 @@ const onReset = () => {
       <hs-input v-model="model.desc" type="textarea" />
     </hs-form-item>
     <hs-form-item>
-      <er-button type="primary" @click="onSubmit">Create</er-button>
-      <er-button @click="onReset">Reset</er-button>
+      <hs-button type="primary" @click="onSubmit">Create</hs-button>
+      <hs-button @click="onReset">Reset</hs-button>
     </hs-form-item>
   </hs-form>
 

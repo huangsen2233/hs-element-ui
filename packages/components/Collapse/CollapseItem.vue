@@ -3,9 +3,9 @@ import type { CollapseItemProps } from './types'
 import { computed, inject } from 'vue'
 import { COLLAPSE_CTX_KEY } from './constants'
 import transitionEvents from './transitionEvents'
-import ErIcon from '../Icon/Icon.vue'
+import HsIcon from '../Icon/Icon.vue'
 
-defineOptions({ name: 'ErCollapseItem' })
+defineOptions({ name: 'HsCollapseItem' })
 
 const props = defineProps<CollapseItemProps>()
 const ctx = inject(COLLAPSE_CTX_KEY)
@@ -37,7 +37,7 @@ function handleClick() {
                 {{ title }}
             </slot>
             </span>
-            <er-icon icon="angle-right" class="header-angle" />
+            <hs-icon icon="angle-right" class="header-angle" />
         </div>
 
         <!-- 内容 -->

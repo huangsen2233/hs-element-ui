@@ -47,13 +47,13 @@ const isTest = process.env.NODE_ENV === "test"
 
 export default defineConfig({
     plugins: [
-        vue(), 
+        vue(),
         visualizer({
             filename: "dist/stats.es.html",
         }),
-        // 该插件用于自动生成类型文件
-        dts({ 
-            tsconfigPath: '../../tsconfig.build.json', // 指定 tsconfig 文件路径
+        // 该插件用于生成类型提示文件
+        dts({
+            tsconfigPath: '../../tsconfig.build.json', // 指定 tsconfig 配置文件路径
             outDir: 'dist/types', // 指定输出目录
         }),
         hooks({
@@ -112,6 +112,7 @@ export default defineConfig({
             output: {
                 // 样式分包
                 assetFileNames: (assetInfo) => {
+                    // assetInfo.name 已经被弃用了，推荐使用 assetInfo.names 替代
                     if (assetInfo.name === 'style.css') {
                         return 'index.css'
                     }
