@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h } from "vue";
-import { HsMessage, HsMessageBox } from "hs-element-ui";
+import { HsMessage, HsMessageBox } from "hs-element-plus";
 import { delay } from "lodash-es";
 
 async function openMsgBox() {

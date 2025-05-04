@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { HsMessageBox, HsMessage } from "hs-element-ui";
+import { HsMessageBox, HsMessage } from "hs-element-plus";
 
 function openAlert() {
   HsMessageBox.alert("This is a message", "Title")

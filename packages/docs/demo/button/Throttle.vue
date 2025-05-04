@@ -1,5 +1,5 @@
 <script setup>
-import { HsMessage } from "hs-element-ui";
+import { HsMessage } from "hs-element-plus";
 function handleBtnClick() {
   HsMessage.info("btn click");
 }

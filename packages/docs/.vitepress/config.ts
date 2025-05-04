@@ -55,7 +55,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/EricWXY/eric-ui" },
+      { icon: "github", link: "https://github.com/huangsen2233/hs-element-ui" },
     ],
   },
   markdown: {

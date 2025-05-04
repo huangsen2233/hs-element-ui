@@ -78,7 +78,7 @@ demo-preview=../demo/messagebox/Center.vue
 ## 单独引用
 
 ```typescript
-import { HsMessageBox } from "hs-element-ui";
+import { HsMessageBox } from "hs-element-plus";
 ```
 
 ## MessageBox API

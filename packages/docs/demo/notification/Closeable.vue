@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {HsNotification} from 'hs-element-ui'
+import {HsNotification} from 'hs-element-plus'
 
 const open = () => {
   HsNotification.success({

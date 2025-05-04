@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ja, ko, en, zhCn, zhTw, ErConfigProvider } from "hs-element-ui";
+import { ja, ko, en, zhCn, zhTw, HsConfigProvider } from "hs-element-plus";
 import { get } from "lodash-es";
 
 import { computed, ref } from "vue";
@@ -22,9 +22,9 @@ const changelang = () => {
   <hs-button @click="changelang" type="info" style="margin-right: 20px"
     >change language</hs-button
   >
-  <er-config-provider :locale="locale">
+  <hs-config-provider :locale="locale">
     <hs-popconfirm title="Are you shure to delete this item?">
       <hs-button>Delete</hs-button>
     </hs-popconfirm>
-  </er-config-provider>
+  </hs-config-provider>
 </template>

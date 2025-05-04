@@ -44,7 +44,7 @@ demo-preview=../demo/notification/Closeable.vue
 ## 单独引用
 
 ```typescript
-import { HsNotification } from "hs-element-ui";
+import { HsNotification } from "hs-element-plus";
 ```
 
 ## Notification API

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
-import { HsMessage, type FormInstance } from "hs-element-ui";
+import { HsMessage, type FormInstance } from "hs-element-plus";
 
 const formRef = ref<FormInstance>();
 const form = reactive({

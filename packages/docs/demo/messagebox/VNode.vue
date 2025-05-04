@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h, ref } from "vue";
-import { HsMessageBox, HsSwitch, type SwitchValueType } from "hs-element-ui";
+import { HsMessageBox, HsSwitch, type SwitchValueType } from "hs-element-plus";
 
 function open1() {
   HsMessageBox({

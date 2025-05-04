@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { HsMessage, HsMessageBox } from "hs-element-ui";
+import { HsMessage, HsMessageBox } from "hs-element-plus";
 
 function openMsgBox() {
   HsMessageBox.confirm(

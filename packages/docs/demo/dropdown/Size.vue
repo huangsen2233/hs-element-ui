@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type DropdownItemProps } from "hs-element-ui";
+import { type DropdownItemProps } from "hs-element-plus";
 
 const items: DropdownItemProps[] = [
   { command: "1", label: "Action 1" },

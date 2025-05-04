@@ -1,10 +1,10 @@
 import DefaultTheme from "vitepress/theme";
 import { type App } from "vue";
-import HsElementUi, { zhCn } from "hs-element-ui";
+import HsElementUi, { zhCn } from "hs-element-plus";
 import { ElementPlusContainer } from "@vitepress-preview/component";
 
 import "@vitepress-preview/component/style.css";
-import "hs-element-ui/dist/index.css";
+import "hs-element-plus/dist/index.css";
 
 export default {
   ...DefaultTheme,

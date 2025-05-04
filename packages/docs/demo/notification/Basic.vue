@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h } from "vue";
-import { HsNotification } from "hs-element-ui";
+import { HsNotification } from "hs-element-plus";
 
 function openNotify1() {
   HsNotification({

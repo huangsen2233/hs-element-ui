@@ -1,4 +1,4 @@
-import type { SelectOptionProps, SelectStates } from "hs-element-ui";
+import type { SelectOptionProps, SelectStates } from "hs-element-plus";
 import type { Ref, ComputedRef } from "vue";
 
 interface KeyMapParams {

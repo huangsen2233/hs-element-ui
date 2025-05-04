@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
-import { HsMessage } from "hs-element-ui";
+import { HsMessage } from "hs-element-plus";
 
 const form = reactive({
   name: "",

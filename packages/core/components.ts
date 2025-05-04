@@ -19,6 +19,7 @@ import {
     HsOption,
     HsForm,
     HsFormItem,
+    HsConfigProvider,
 } from '@hs-element-ui/components'
 import type { Plugin } from 'vue'
 
@@ -43,4 +44,5 @@ export default [
     HsOption,
     HsForm,
     HsFormItem,
+    HsConfigProvider,
 ] as Plugin[]

@@ -1,5 +1,5 @@
 <script setup>
-import { HsMessage } from "hs-element-ui";
+import { HsMessage } from "hs-element-plus";
 
 function handleClose() {
   HsMessage.info("close callback");

@@ -3,7 +3,7 @@ import {
   type DropdownItemProps,
   type DropdownCommand,
   HsMessage,
-} from "hs-element-ui";
+} from "hs-element-plus";
 
 const items: DropdownItemProps[] = [
   { command: "1", label: "Action 1" },

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { HsLoading } from "hs-element-ui";
+import { HsLoading } from "hs-element-plus";
 
 const loading = ref(false);
 

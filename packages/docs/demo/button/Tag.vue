@@ -4,7 +4,7 @@
   <hs-button
     type="primary"
     tag="a"
-    href="https://github.com/EricWXY/hs-element-ui"
+    href="https://github.com/huangsen2233/hs-element-ui"
     target="_blank"
     rel="noopener noreferrer"
   >

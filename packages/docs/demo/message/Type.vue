@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { HsMessage } from "hs-element-ui";
+import { HsMessage } from "hs-element-plus";
 
 const open1 = () => {
   HsMessage("This is a message.");

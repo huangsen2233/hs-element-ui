@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { h } from "vue";
-import { HsMessage } from "hs-element-ui";
+import { HsMessage } from "hs-element-plus";
 
 const open = () => {
   HsMessage("This is a message.");

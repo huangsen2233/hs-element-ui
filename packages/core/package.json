@@ -1,9 +1,13 @@
 {
   "name": "hs-element-plus",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Components library by Vue3 + Ts",
-  "keywords": [],
-  "author": "hs (https://www.npmjs.com/~huangsen173)",
+  "keywords": [
+    "vue3",
+    "element-plus",
+    "components"
+  ],
+  "author": "hs <770142345@qq.com> (https://www.npmjs.com/~huangsen173)",
   "homepage": "https://huangsen2233.github.io/hs-element-ui/",
   "repository": {
     "type": "git",

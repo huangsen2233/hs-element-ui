@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { HsMessageBox, HsMessage } from "hs-element-ui";
+import { HsMessageBox, HsMessage } from "hs-element-plus";
 
 function openConfirm() {
   HsMessageBox.confirm("proxy will permanently delete the file. Continue?", "Warning", { type: "warning" })
