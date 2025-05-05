@@ -56,6 +56,7 @@ export default defineConfig({
             tsconfigPath: '../../tsconfig.build.json', // 指定 tsconfig 配置文件路径
             outDir: 'dist/types', // 指定输出目录
         }),
+        // 自定义插件，在打包前后处理 css 文件
         hooks({
             rmFiles: ['./dist/es', './dist/theme', './dist/types'],
             afterBuild: moveStyles
@@ -129,6 +130,7 @@ export default defineConfig({
                     if (id.includes('/packages/hooks')) {
                         return 'hooks'
                     }
+                    // plugin-vue:export-helpe 是 vue 插件生成的文件，需要单独提出来，不然组件会因为加载顺序报错
                     if (id.includes('/packages/utils') || id.includes("plugin-vue:export-helper")) {
                         return 'utils'
                     }

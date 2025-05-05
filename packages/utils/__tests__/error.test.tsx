@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { throwError, debugWarn } from '../error'
 
+
 describe('error', () => {
     it('throwError should be worked', () => {
         expect(() => {

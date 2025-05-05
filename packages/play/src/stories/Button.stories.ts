@@ -2,8 +2,8 @@ import type { Meta, StoryObj, ArgTypes } from "@storybook/vue3"
 import { fn, within, userEvent, expect, clearAllMocks } from "@storybook/test"
 import { set } from "lodash-es"
 
-import { HsButton, HsButtonGroup } from "hs-element-ui"
-import 'hs-element-ui/dist/theme/Button.css'
+import { HsButton, HsButtonGroup } from "hs-element-plus"
+import 'hs-element-plus/dist/theme/Button.css'
 
 type Story = StoryObj<typeof HsButton> & { argTypes?: ArgTypes };
 
@@ -70,7 +70,7 @@ export const Default: Story & { args: { content: string } } = {
     content: "Button",
   },
   render: (args) => ({
-    components: { HsButton },
+    components: { HsButton, HsButtonGroup },
     setup() {
       return { args };
     },
@@ -212,7 +212,7 @@ export const Group: Story & { args: { content1: string; content2: string } } = {
     content2: "Button2",
   },
   render: (args) => ({
-    components: { HsButton },
+    components: { HsButton, HsButtonGroup },
     setup() {
       return { args };
     },

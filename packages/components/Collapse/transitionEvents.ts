@@ -1,11 +1,10 @@
 const _setHeightZero = (el: HTMLElement) => (el.style.height = "0px");
-const _setHeightScroll = (el: HTMLElement) =>
-    (el.style.height = `${el.scrollHeight}px`);
+const _setHeightScroll = (el: HTMLElement) => (el.style.height = `${el.scrollHeight}px`);
 const _setHeightEmpty = (el: HTMLElement) => (el.style.height = "");
 const _setOverflowHidden = (el: HTMLElement) => (el.style.overflow = "hidden");
 const _setOverflowEmpty = (el: HTMLElement) => (el.style.overflow = "");
 
-// transition 组件的过渡事件
+// transition 组件的事件
 const transitionEvents: Record<string, (el: HTMLElement) => void> = {
     beforeEnter(el) {
         _setHeightZero(el);

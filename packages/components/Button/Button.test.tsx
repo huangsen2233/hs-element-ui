@@ -251,4 +251,34 @@ describe("ButtonGroup.vue", () => {
     const buttonWrapper = wrapper.findComponent(Button);
     expect(buttonWrapper.classes()).toContain(`is-disabled`);
   });
+
+  test("button group disabled should propagate to children", () => {
+    const wrapper = mount(() => (
+      <ButtonGroup disabled>
+        <Button>button 1</Button>
+        <Button>button 2</Button>
+      </ButtonGroup>
+    ));
+
+    // 验证每个按钮的 disabled 状态
+    wrapper.findAllComponents(Button).forEach(buttonWrapper => {
+      expect(buttonWrapper.classes()).toContain("is-disabled");
+      expect(buttonWrapper.find("button").element.disabled).toBe(true);
+    });
+  });
+
+  // 新增优先级测试
+  test("should override child button disabled state", () => {
+    const wrapper = mount(() => (
+      <ButtonGroup disabled>
+        <Button disabled={false}>button 1</Button> {/* 显式设置 false */}
+        <Button>button 2</Button>
+      </ButtonGroup>
+    ));
+
+    // 第一个按钮应该继承父级 disabled
+    const firstButton = wrapper.findAllComponents(Button)[0];
+    expect(firstButton.classes()).toContain("is-disabled");
+    expect(firstButton.find("button").element.disabled).toBe(true);
+  });
 });

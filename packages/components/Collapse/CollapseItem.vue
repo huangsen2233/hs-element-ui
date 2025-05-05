@@ -18,7 +18,7 @@ function handleClick() {
 </script>
 
 <template>
-    <div 
+    <div
         class="er-collapse-item"
         :class="{ 'is-disabled': disabled }"
     >
@@ -41,7 +41,7 @@ function handleClick() {
         </div>
 
         <!-- 内容 -->
-        <transition name="slide" v-on="transitionEvents"> 
+        <transition name="slide" v-on="transitionEvents">
             <div class="er-collapse-item__wapper" v-show="isActive">
                 <div class="er-collapse-item__content" :id="`item-content-${name}`">
                     <slot></slot>

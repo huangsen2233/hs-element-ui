@@ -8,7 +8,10 @@ const COMPONENT_NAME = 'HsCollapse' as const
 
 defineOptions({ name: COMPONENT_NAME })
 
-const props = defineProps<CollapseProps>()
+const props = withDefaults(defineProps<CollapseProps>(), {
+    modelValue: () => [],
+    accordion: false,
+})
 const emits = defineEmits<CollapseEmits>()
 
 const activeNames = ref(props.modelValue)

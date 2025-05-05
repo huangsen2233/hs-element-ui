@@ -1,4 +1,4 @@
-import 'hs-element-ui/dist/theme/index.css'
+import 'hs-element-plus/dist/theme/index.css'
 
 /** @type { import('@storybook/vue3').Preview } */
 const preview = {

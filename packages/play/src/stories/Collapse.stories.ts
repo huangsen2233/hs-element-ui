@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3"
-import { HsCollapse, HsCollapseItem } from "hs-element-ui"
-// import 'hs-element-ui/dist/theme/Collapse.css'
-
-import 'hs-element-ui/dist/theme/Collapse.css'
+import { HsCollapse, HsCollapseItem } from "hs-element-plus"
+import 'hs-element-plus/dist/theme/Collapse.css'
 
 type Story = StoryObj<typeof HsCollapse>;
 

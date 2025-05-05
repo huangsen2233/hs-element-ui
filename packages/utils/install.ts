@@ -11,6 +11,9 @@ export function makeInstaller(components: Plugin[]) {
 export const withInstall = <T>(component: T) => {
     (component as SFCWithInstall<T>).install = (app: App) => {
         const name = (component as any).name
+        if (!name) {
+            throw new Error('Component must have a name property');
+        }
         app.component(name, component as Plugin)
     }
     return component as SFCWithInstall<T>

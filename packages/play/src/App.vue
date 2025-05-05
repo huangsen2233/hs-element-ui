@@ -1,31 +1,15 @@
 <script setup lang="ts">
 import { ref, computed, reactive, onMounted } from "vue";
-import HsComponents from "./HsComponents.vue"
-// import ErButton from "./components/Button/Button.vue"
-// import ErAlert from "./components/Alert/Alert.vue"
-// import ErTooltip from "./components/Tooltip/Tooltip.vue";
-// import HsPopconfirm from "./components/Popconfirm/Popconfirm.vue";
-// import HsDropdown from "./components/Dropdown/Dropdown.vue";
-// import DropdownItem from "./components/Dropdown/DropdownItem.vue";
-// import message from "./components/Message/methods";
-// import MessageBox from "./components/MessageBox/methods";
-// import { HsSwitch } from 'hs-element-ui';
-// import { HsLoading } from "hs-element-ui"
-// import { HsLoading } from "./components/Loading"
-// import { HsSelect, HsOption } from "hs-element-ui";
-// import HsSelect from "./components/Select/Select.vue";
-// import HsOption from "./components/Select/Option.vue";
-
-// import { HsInput } from './components/Input';
-// import { HsForm, HsFormItem } from "./components/Form";
-
-// import { HsForm, HsFormItem, HsInput } from "hs-element-ui";
 import {
   HsMessage,
   type FormInstance,
   HsLoading,
   HsMessageBox as MessageBox,
-} from "hs-element-ui";
+} from "hs-element-plus";
+import { isString } from 'lodash-es'
+
+console.log('isString', isString(''), Number(''), !Number.isNaN(Number('')));
+
 
 const virtualRef = ref<HTMLElement>()
 const inputValue = ref<string>("")
@@ -108,23 +92,11 @@ const activeNames = ref(['1', '2'])
 </script>
 
 <template>
-  <!-- <hs-components>
-    <template #header>组件插入头部列表</template>
-    <template #default>
-      <hs-button type="success" size="large" icon='search'>成功按钮</hs-button>
-      <div>默认插入内容1</div>
-      <div>默认插入内容22</div>
-      <div>默认插入内容333</div>
-    </template>
-    <template #footer>组件插入尾部列表底部</template>
-  </hs-components> -->
-  <br />
-
   <hs-button type="success" size="large" icon='search'>成功按钮</hs-button>
 
   <hs-alert  type="success" title="成功提示">成功类型的alert组件!</hs-alert>
 
-  <hs-collapse  v-model="activeNames">
+  <hs-collapse accordion v-model="activeNames">
     <hs-collapse-item name="1" title="标题1">内容111111</hs-collapse-item>
     <hs-collapse-item name="2" title="标题2">内容222222</hs-collapse-item>
   </hs-collapse>
@@ -153,7 +125,7 @@ const activeNames = ref(['1', '2'])
 
   <br />
   <div :style="{ width: '300px' }">
-    <!-- <hs-input type="password" showPassword v-model="inputValue" placeholder="请输入"  /> -->
+    <hs-input type="password" showPassword v-model="inputValue" placeholder="请输入"  />
   </div>
 
   <hs-button type="danger" @click="handleMsgClick">失败消息按钮</hs-button>

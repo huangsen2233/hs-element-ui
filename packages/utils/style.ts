@@ -4,7 +4,7 @@ import { debugWarn } from "./error";
 const SCOPE = "utils/style" as const;
 
 // 判断字符串内容是否为数字
-const isStringNumber = (val: string): boolean => {
+export const isStringNumber = (val: string): boolean => {
     if (!isString(val)) {
         return false;
     }

@@ -18,7 +18,7 @@ const ctx = inject(BUTTON_GROUP_CTX_KEY, void 0)
 
 const type = computed(() => (ctx?.type ?? props.type ?? ''))
 const size = computed(() => (ctx?.size ?? props.size ?? ''))
-const disabled = computed(() => (ctx?.disabled ?? props.disabled ?? false))
+const disabled = computed(() => (ctx?.disabled ?? props?.disabled ?? false))
 
 const emits = defineEmits<ButtonEmits>()
 

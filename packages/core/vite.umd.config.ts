@@ -38,6 +38,7 @@ export default defineConfig({
         compression({
             include: /.(cjs|css)$/i,
         }),
+        // 自定义插件，在打包前后处理 css 文件
         hooks({
             rmFiles: ['./dist/umd', './dist/index.css'],
             afterBuild: moveStyles
