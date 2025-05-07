@@ -9,7 +9,9 @@ import {
 export function makeInstaller(componets: Plugin[]) {
     const installer = (app: App, opts?: ConfigProviderProps) => {
         each(componets, (c) => app.use(c));
-        if (opts) provideGlobalConfig(opts, app, true);
+        if (opts) {
+            provideGlobalConfig(opts, app, true)
+        }
     };
 
     return installer as Plugin;

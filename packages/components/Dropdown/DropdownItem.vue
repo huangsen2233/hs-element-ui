@@ -26,14 +26,14 @@ function handleClick() {
 
 <template>
     <li v-if="divided" role="separator" class="divided-placeholder"></li>
-    <li 
+    <li
         :id="`dropdown-item-${command ?? useId().value}`" 
         :class="{
             'er-dropdown__item': true,
             ['er-dropdown__item--' + size]: size,
             'is-disabled': disabled,
             'is-divided': divided,
-        }" 
+        }"
         @click="handleClick">
         <slot>
             {{ label }}

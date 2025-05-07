@@ -28,18 +28,19 @@ const style = computed(() => ({ width: addUnit(props.width) }))
 
 const locale = useLocale()
 
-function hidePoper() {
+// 隐藏 popper 提示框
+function hidePopper() {
     tooltipRef.value?.hide()
 }
 
 function confrim(e: MouseEvent) {
     emits('confirm', e)
-    hidePoper()
+    hidePopper()
 }
 
 function cancel(e: MouseEvent) {
     emits('cancel', e)
-    hidePoper()
+    hidePopper()
 }
 </script>
 

@@ -148,6 +148,7 @@ watch(() => props.manual, (isManual) => {
 
 // 监听 trigger 触发方式变化
 watch(() => props.trigger, (val, oldVal) => {
+    console.log('[watch - trigger]', val, oldVal);
     if (val === oldVal) return
     openDebounce?.cancel()
     visible.value = false
@@ -180,7 +181,7 @@ defineExpose<TooltipInstance>({
 <template>
     <div class="er-tooltip" ref="containerNode" v-on="containerNodeEvents">
         <div class="er-tooltip__trigger" ref="_triggerNode" v-on="triggerNodeEvents" v-if="!virtualTriggering">
-            <slot name="default"></slot>
+            <slot></slot>
         </div>
         <slot name="default" v-else></slot>
         <transition :name="transition" @after-leave="destroyPopperInstance">

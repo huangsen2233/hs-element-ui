@@ -1,6 +1,6 @@
 import Popconfirm from "./Popconfirm.vue";
 import { withInstall } from "@hs-element-ui/utils";
 
-export const HsPopconfirm = withInstall(Popconfirm);
+export const ErPopconfirm = withInstall(Popconfirm);
 
 export * from "./types";

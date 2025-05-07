@@ -5,11 +5,12 @@ import {
   type FormInstance,
   HsLoading,
   HsMessageBox as MessageBox,
+  HsConfigProvider, ja, ko, en, zhCn, zhTw,
 } from "hs-element-plus";
-import { isString } from 'lodash-es'
-
-console.log('isString', isString(''), Number(''), !Number.isNaN(Number('')));
-
+import { ErTooltip } from "./Child/Tooltip"
+import { ErPopconfirm } from "./components/Popconfirm"
+import { ErDropdown, ErDropdownItem } from "./components/Dropdown"
+import { ErConfigProvider } from "./components/ConfigProvider"
 
 const virtualRef = ref<HTMLElement>()
 const inputValue = ref<string>("")
@@ -87,11 +88,41 @@ const onReset = () => {
   formRef.value?.resetFields();
 };
 
-const activeNames = ref(['1', '2'])
+const activeNames = ref(['1'])
 
+const dropdownItem = [
+  { command: 'a', label: '1', disabled: true },
+  { command: 'b', label: '22', divided: true },
+  { command: 'c', label: '333' },
+]
+
+const language = ref("ko");
+const langMap = {
+  ja,
+  ko,
+  en,
+  zhCn,
+  zhTw,
+};
+const locale = computed(() => langMap[language.value]);
+const changelang = () => {
+  const list = ["zhCn", "zhTw", "ko", "en", "ja"];
+  const index = Math.floor(Math.random() * list.length);
+  console.log('index', index);
+  language.value = list[index];
+};
 </script>
 
 <template>
+  <hs-button type="primary" @click="changelang">切换语言</hs-button>
+  <!-- <er-config-provider :locale="locale"> -->
+    <hs-popconfirm title="确定删除吗">
+      <template v-slot:reference>
+        <hs-button type="primary">气泡弹框</hs-button>
+      </template>
+    </hs-popconfirm>
+  <!-- </er-config-provider> -->
+
   <hs-button type="success" size="large" icon='search'>成功按钮</hs-button>
 
   <hs-alert  type="success" title="成功提示">成功类型的alert组件!</hs-alert>
@@ -102,26 +133,42 @@ const activeNames = ref(['1', '2'])
   </hs-collapse>
 
   <div ref="virtualRef">虚拟触发节点</div>
-  <hs-tooltip
+  <er-tooltip
     content="tooltip的提示内容"
-    :virtualRef="virtualRef"
-    :virtualTriggering="true"
     trigger="click"
   >
-    tooltip文本
-  </hs-tooltip>
+    tooltip的默认文本
+  </er-tooltip>
 
   <hs-popconfirm title="确定删除吗">
-    <hs-button type="primary">确认框</hs-button>
+    <template v-slot:reference>
+      <hs-button type="primary">reference 插槽确认框按钮</hs-button>
+    </template>
   </hs-popconfirm>
 
-  <hs-dropdown>
+  <er-dropdown>
     <hs-button type="primary">下拉菜单</hs-button>
     <template v-slot:dropdown>
-      <hs-dropdown-item label='a'  />
-      <hs-dropdown-item label='b'  />
+      <er-dropdown-item label='a' disabled />
+      <er-dropdown-item label='b'  />
     </template>
-  </hs-dropdown>
+  </er-dropdown>
+
+  <er-dropdown :items="dropdownItem">
+    <span>items形式的下拉菜单</span>
+  </er-dropdown>
+
+
+  <er-dropdown :disabled="true">
+    <span>
+      禁用整个下拉菜单
+      <hs-icon icon="angle-down"></hs-icon>
+    </span>
+    <template v-slot:dropdown>
+      <er-dropdown-item label='a'  />
+      <er-dropdown-item label='b'  />
+    </template>
+  </er-dropdown>
 
   <br />
   <div :style="{ width: '300px' }">
@@ -166,3 +213,7 @@ const activeNames = ref(['1', '2'])
   </hs-form>
 
 </template>
+
+<style>
+
+</style>

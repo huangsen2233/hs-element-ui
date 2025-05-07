@@ -7,11 +7,10 @@ const _dfs = (nodes: VNode[], cb: (node: VNode) => void) =>
         isFunction(cb) && cb(node);
         node.children && _dfs(node.children as VNode[], cb);
     });
-    
 
-// 动态地根据组件的 disabled 属性状态，为组件的子节点添加或移除特定的样式
+// 根据组件的 disabled 属性，给子组件添加或移除的样式
 export function useDisabledStyle() {
-    // 用于存储desable属性为true的节点
+    // 存储 disabled 属性为 true 的节点和其原始的 props
     const nodePropsMap = new Map();
 
     const instance = getCurrentInstance();
@@ -21,10 +20,12 @@ export function useDisabledStyle() {
         if (!instance?.props.disabled) {
             _dfs(children ?? [], (node) => {
                 if (!nodePropsMap.has(node)) return;
+                // dropdown 组件的 disabled 属性为 false 时，恢复原始的 props
                 node.props = nodePropsMap.get(node);
             });
             return;
         }
+        // dropdown 组件的 disabled 属性为 true
         _dfs(children ?? [], (node) => {
             if (!node?.props) return;
 

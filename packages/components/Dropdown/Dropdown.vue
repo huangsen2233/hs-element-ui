@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, provide } from 'vue'
 import { omit, isNil } from 'lodash-es'
+import { useDisabledStyle } from '@hs-element-ui/hooks'
 import type { TooltipInstance } from '../Tooltip/types'
+import HsTooltip from '../Tooltip/Tooltip.vue'
 import { type ButtonInstance, HsButton, HsButtonGroup } from '../Button'
 import type {
     DropdownProps,
@@ -11,36 +13,36 @@ import type {
     DropdownInstance,
 } from './types'
 import DropdownItem from './DropdownItem.vue'
-import HsTooltip from '../Tooltip/Tooltip.vue'
 import { DROPDOWN_CTX_KEY } from './constants'
-import { useDisabledStyle } from '@hs-element-ui/hooks'
 
 defineOptions({
     name: 'HsDropdown',
     inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps < DropdownProps > (), {
+const props = withDefaults(defineProps<DropdownProps>(), {
     hideOnClick: true,
     items: () => [] as DropdownItemProps[],
 })
-const emits = defineEmits < DropdownEmits > ()
+const emits = defineEmits<DropdownEmits>()
 const slots = defineSlots()
 
-const tooltipRef = ref < TooltipInstance > ()
-const triggerRef = ref < ButtonInstance > ()
+const tooltipRef = ref<TooltipInstance>()
+const triggerRef = ref<ButtonInstance>()
 const virtualRef = computed(() => triggerRef.value?.ref ?? void 0)
 
 const tooltipProps = computed(() =>
     omit(props, ['items', 'hideAfterClick', 'size', 'type', 'splitButton'])
 )
 
-function handleItemClick(e:DropdownItemProps) {
+// dropdownItem 点击事件
+function handleItemClick(e: DropdownItemProps) {
     props.hideOnClick && tooltipRef.value?.hide()
     !isNil(e.command) && emits('command', e.command)
 }
 
 // !TEST && useDisabledStyle()
+// props 传入的 disabled: true 时样式处理
 useDisabledStyle()
 
 provide<DropdownContext>(DROPDOWN_CTX_KEY, {
@@ -48,7 +50,7 @@ provide<DropdownContext>(DROPDOWN_CTX_KEY, {
     size: computed(() => props.size),
 })
 
-defineExpose < DropdownInstance > ({
+defineExpose<DropdownInstance>({
     open: () => tooltipRef.value?.show(),
     close: () => tooltipRef.value?.hide()
 })
@@ -56,11 +58,11 @@ defineExpose < DropdownInstance > ({
 
 <template>
     <div class="er-dropdown" :class="{ 'is-disabled': props.disabled }">
-        <hs-tooltip 
-            ref="tooltipRef" 
-            v-bind="tooltipProps" 
+        <hs-tooltip
+            ref="tooltipRef"
+            v-bind="tooltipProps"
             :virtual-triggering="splitButton"
-            :virtual-ref="virtualRef?.value" 
+            :virtual-ref="virtualRef?.value"
             @visible-change="$emit('visible-change', $event)"
         >
             <hs-button-group v-if="splitButton" :type="type" :size="size" :disabled="disabled">
@@ -69,6 +71,7 @@ defineExpose < DropdownInstance > ({
                 </hs-button>
                 <hs-button ref="triggerRef" icon="angle-down" />
             </hs-button-group>
+
             <slot name="default" v-else></slot>
 
             <template #content>
@@ -88,7 +91,7 @@ defineExpose < DropdownInstance > ({
 @import "./style.css";
 
 :deep(.er-button-group) {
-    & > :last-child {
+    &> :last-child {
         padding: 5px 7px;
     }
 }

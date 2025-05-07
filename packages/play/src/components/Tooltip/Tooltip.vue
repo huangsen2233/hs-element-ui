@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<_TooltipProps>(), {
     hideTimeout: 200
 })
 
+
 const emits = defineEmits<TooltipEmits>()
 
 const visible = ref(false)
@@ -52,7 +53,7 @@ const popperOptions = computed(() => ({
     ...props.popperOptions,
 }))
 
-const opneDelay = computed(() => props.trigger === 'hover' ? props.showTimeout : 0)
+const openDelay = computed(() => props.trigger === 'hover' ? props.showTimeout : 0)
 const closeDelay = computed(() => props.trigger === 'hover' ? props.hideTimeout : 0)
 
 // 策略模式 - 表驱动
@@ -158,7 +159,7 @@ watchEffect(() => {
     if (!props.manual) {
         attachEvents()
     }
-    openDebounce = debounce(bind(setVisible, null, true), opneDelay.value)
+    openDebounce = debounce(bind(setVisible, null, true), openDelay.value)
     closeDebounce = debounce(bind(setVisible, null, false), closeDelay.value)
 })
 

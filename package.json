@@ -49,15 +49,15 @@
     "@vitepress-preview/component": "workspace:*"
   },
   "dependencies": {
+    "hs-element-plus": "workspace:*",
     "@hs-element-ui/hooks": "workspace:*",
     "@hs-element-ui/theme": "workspace:*",
     "@hs-element-ui/utils": "workspace:*",
     "@hs-element-ui/locale": "workspace:*",
+    "lodash-es": "^4.17.21",
+    "vue": "^3.4.19",
     "@vitest/coverage-v8": "^1.4.0",
     "@vue/test-utils": "^2.4.5",
-    "hs-element-plus": "workspace:*",
-    "jsdom": "^24.0.0",
-    "lodash-es": "^4.17.21",
-    "vue": "^3.4.19"
+    "jsdom": "^24.0.0"
   }
 }

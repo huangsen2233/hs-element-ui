@@ -4,6 +4,7 @@ import { createI18n, i18nSymbol, type I18nInstance } from "vue3-i18n";
 import type { Language } from "@hs-element-ui/locale";
 import English from "@hs-element-ui/locale/lang/en";
 
+// 移除 i18nInstance 实例上的 install 方法
 const omitInstall = (obj: I18nInstance) => omit(obj, "install");
 
 // 实现国际化

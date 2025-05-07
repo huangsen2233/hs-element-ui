@@ -32,7 +32,6 @@ export function useGlobalConfig(
   const config = getCurrentInstance()
     ? inject(configProviderContextKey, globalConfig)
     : globalConfig;
-
   return key ? computed(() => config.value?.[key] ?? defaultVal) : config;
 }
 
@@ -64,6 +63,8 @@ export function provideGlobalConfig(
   app?: App,
   global = false
 ) {
+  console.log('[provideGlobalConfig - app]', app);
+
   const instance = getCurrentInstance();
   const oldCfg = instance ? useGlobalConfig() : void 0;
   const provideFn = app?.provide ?? (instance ? provide : void 0);
@@ -78,6 +79,7 @@ export function provideGlobalConfig(
 
   const context = ref(unref(config));
 
+  // 监听配置变化并合并旧配置
   watch(
     () => config,
     (val) => {

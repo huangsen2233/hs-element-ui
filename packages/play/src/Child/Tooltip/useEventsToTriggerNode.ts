@@ -14,8 +14,9 @@ export function useEvenstToTiggerNode(
 
     const _eventHandleMap = new Map();
 
-    // 给虚拟触发节点绑定事件
     const _bindEventToVirtualTiggerNode = () => {
+        console.log('events', events.value);
+
         const el = triggerNode.value;
         isElement(el) &&
             each(events.value, (fn, event) => {
@@ -23,8 +24,6 @@ export function useEvenstToTiggerNode(
                 el?.addEventListener(event as keyof HTMLElementEventMap, fn);
             });
     };
-
-    // 解绑事件
     const _unbindEventToVirtualTiggerNode = () => {
         const el = triggerNode.value;
         isElement(el) &&
