@@ -1,0 +1,17 @@
+root = true
+
+# 全局规则
+[*]
+charset = utf-8           # 统一 UTF-8 编码
+indent_style = space      # 空格缩进
+indent_size = 2           # 缩进 2 空格
+end_of_line = lf          # 使用 Unix 风格换行符
+trim_trailing_whitespace = true  # 自动删除行尾空格
+insert_final_newline = true      # 文件末尾强制换行
+
+# 针对特定文件类型的覆盖规则
+[*.md]
+trim_trailing_whitespace = false  # Markdown 保留行尾空格
+
+[*.{json,yml}]
+indent_size = 2           # JSON/YAML 缩进规则
